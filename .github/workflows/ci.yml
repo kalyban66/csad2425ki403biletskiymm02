@@ -52,7 +52,7 @@ jobs:
       # Компілюємо Arduino-проєкт для плати Arduino Uno
       - name: Build Arduino Project
         run: |
-          arduino-cli compile --fqbn arduino:avr:uno server/sketch.ino  # Запускаємо компіляцію для плати Arduino Uno
+          arduino-cli compile --fqbn arduino:avr:uno server/server.ino  # Запускаємо компіляцію для плати Arduino Uno
           
       # Завантажуємо результати компіляції Arduino як артефакт для подальшого використання
       - name: Upload Arduino Build Artifact
