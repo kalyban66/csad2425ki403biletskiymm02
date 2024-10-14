@@ -1,0 +1,62 @@
+
+on:
+ 
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Визначаємо, що CI буде виконуватись на останній версії Ubuntu
+
+    steps:
+      # Клонуємо репозиторій, щоб отримати доступ до коду
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Встановлюємо Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Вказуємо версію Python
+
+      # Встановлюємо необхідні бібліотеки
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Оновлюємо pip
+          pip install pyserial  # Встановлюємо бібліотеку pyserial
+
+
+# Друге завдання для компіляції Arduino-проєкту
+  arduino:
+    runs-on: ubuntu-latest  # Визначаємо використання останньої версії Ubuntu для CI-процесів
+
+    steps:
+      # Клонуємо репозиторій, щоб отримати доступ до коду Arduino
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Встановлюємо Arduino CLI для компіляції коду Arduino
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+        with:
+          version: '0.19.2'  # Вказуємо конкретну версію Arduino CLI для використання
+
+      # Встановлюємо платформу Arduino для компіляції під AVR (наприклад, Arduino Uno)
+      - name: Install Arduino AVR platform
+        run: arduino-cli core install arduino:avr  # Виконуємо команду для установки ядра AVR
+
+      # Компілюємо Arduino-проєкт для плати Arduino Uno
+      - name: Build Arduino Project
+        run: |
+          arduino-cli compile --fqbn arduino:avr:uno server/sketch.ino  # Запускаємо компіляцію для плати Arduino Uno
+          
+      # Завантажуємо результати компіляції Arduino як артефакт для подальшого використання
+      - name: Upload Arduino Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: arduino-build  # Вказуємо ім'я артефакта для збереження результатів компіляції
+          path: server/build/*  # Вказуємо шлях до файлів результатів компіляції Arduino
