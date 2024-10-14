@@ -1,0 +1,1 @@
+from .test import TestArduinoCommunication  # Імпортуємо тестовий клас
