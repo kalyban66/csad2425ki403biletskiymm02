@@ -30,7 +30,7 @@ jobs:
       # Запускаємо тести та зберігаємо результати в файл
       - name: Run tests
         run: |
-          python -m unittest discover -s tests -p "test.py" > test_results.txt
+          python -m unittest discover -s client/tests -p "*.py" > test_results.txt
       # python -m unittest discover -s tests -p "test.py" > test_results.txt
       # Завантажуємо результати тестування як артефакт
       - name: Upload Test Results
@@ -41,7 +41,7 @@ jobs:
 
   # Друге завдання для компіляції Arduino-проєкту
   arduino:
-    runs-on: ubuntu-latest  # Визначаємо використання останньої версії Ubuntu для CI-процесів
+    runs-on: ubuntu-latest  
 
     steps:
       # Клонуємо репозиторій, щоб отримати доступ до коду Arduino
