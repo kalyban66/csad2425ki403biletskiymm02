@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "author": "dian artanto",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -95.4, "left": 66.6, "attrs": {} },
+    {
+      "type": "wokwi-serial-port",
+      "id": "serial",
+      "top": 0,
+      "left": 0,
+      "attrs": { "baud": "9600" }
+    }
+  ],
+  "connections": [ [ "uno:1", "serial:RX", "", [] ], [ "uno:0", "serial:TX", "", [] ] ],
+  "dependencies": {}
+}

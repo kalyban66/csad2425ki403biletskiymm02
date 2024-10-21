@@ -1,5 +1,0 @@
-Connected to COM5
-Sent: Hello from Python!
-Massage received: Hello from Arduino!
-The returned massage from Arduino Uno: Hello back!
-The connection is closed
