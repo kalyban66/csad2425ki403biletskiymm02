@@ -1,9 +1,12 @@
 # csad2425ki403biletskiymm02
-This repository is intended for downloading labs on the subject of APCS.
-
-The task is to create a game of rock scissors paper.
-‘Rock, Scissors, Paper is a simple two-player game in which each player chooses one of three possible moves: rock, scissors or paper. Each move has its own rules for winning, losing or drawing compared to the other player's move.
-
-student number: 2 | rock paper scissors | JSON
-
-this project in the form of a game will look like a client-server application using the GUI, the programming language is either C++ or Java.
+During Task 3, a server-client program was implemented, where the Arduino Uno board acted as the server and the Python client. The following game modes were implemented: 
+    ∙ Man vs.
+    ∙ Man vs.
+    ∙ AI vs:
+        ○ Random move;
+        ○ Win strategy;
+The following actions are implemented:
+    ∙ New;
+    ∙ Save;
+    ∙ Load.
+Implemented GUI to facilitate the use of the game and add a certain game atmosphere.
