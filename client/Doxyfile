@@ -1,0 +1,20 @@
+# Заголовок проекту
+PROJECT_NAME           = "Rock-Paper-Scissors"
+
+# Номер версії проекту
+PROJECT_NUMBER         = "1.0"
+
+# Вкажіть каталог(и) з вашим кодом
+INPUT                  = "D:/STUDY/4KYRS/АПКС/pycharm_labs/client2"  
+
+# Де зберігати згенеровану документацію
+OUTPUT_DIRECTORY       = "D:/STUDY/4KYRS/АПКС/pycharm_labs/client2/docs"
+
+# Активувати рекурсивний пошук файлів
+RECURSIVE             = YES
+
+# Генерація HTML-документації
+GENERATE_HTML         = YES
+
+# (Опціонально) Генерація документації LaTeX
+GENERATE_LATEX        = NO
