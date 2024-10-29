@@ -1,0 +1,32 @@
+{
+    "com_port": "COM5",
+    "baud_rate": 9600,
+    "\u043d\u0430 \u043f\u0430\u043c\u044f\u0442\u044c": {
+        "player1_wins": 60,
+        "player2_wins": 167
+    },
+    "mykola": {
+        "player1_wins": 9,
+        "player2_wins": 8
+    },
+    "name1": {
+        "player1_wins": 1,
+        "player2_wins": 2
+    },
+    "dmytro_tryna": {
+        "player1_wins": 10,
+        "player2_wins": 4
+    },
+    "mykoll": {
+        "player1_wins": 6,
+        "player2_wins": 10
+    },
+    "koko": {
+        "player1_wins": 6,
+        "player2_wins": 10
+    },
+    "jojo": {
+        "player1_wins": 37,
+        "player2_wins": 58
+    }
+}
