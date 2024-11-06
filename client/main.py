@@ -8,7 +8,6 @@ from tkinter import ttk
 from tkinter import Menu, Toplevel
 from PIL import Image, ImageTk
 
-
 #Головний файл для управління з'єднанням з Arduino і графічним інтерфейсом
 #Цей файл містить функції для налаштування комунікації з Arduino та завантаження конфігурації з файлу.
 
@@ -40,6 +39,7 @@ player2_wins = 0
 current_mode = "default_mode"  # Поточний режим гри (можна змінити)
 CONFIG_FILE = "config.json"
 
+
 def send_command(command):
     """
     Відправляє команду на Arduino і отримує відповідь.
@@ -51,6 +51,7 @@ def send_command(command):
     arduino.write((command + '\n').encode())  # Відправка команди
     response = arduino.readline().decode().strip()  # Отримання відповіді
     return response
+
 
 def send_command1(message):
     """
@@ -71,6 +72,7 @@ def send_command1(message):
     elif message == "get_saved_scores":
         return get_all_scores_from_file()  # Отримання всіх збережених результатів
     return "unknown_command"  # Команда не розпізнана
+
 
 def custom_messagebox(title, message, style_type):
     """
@@ -144,14 +146,18 @@ def custom_inputbox(title, message):
 
     return user_input  # Повертає введений текст
 
+
 def check_name_exists(name):
     """
     Перевіряє, чи існує ім'я в JSON файлі.
     Функція перевіряє, чи ім'я, передане як параметр,
     присутнє в JSON файлі конфігурації.
-    Якщо файл не існує, повертає False.
-    Ім'я, яке потрібно перевірити (str).
-    True, якщо ім'я існує, інакше False.
+
+    Параметри:
+    name (str): Ім'я, яке потрібно перевірити.
+
+    Повертає:
+    bool: True, якщо ім'я існує, інакше False.
     """
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, 'r') as file:
@@ -162,12 +168,14 @@ def check_name_exists(name):
 
 def save_score_to_file(name, player1_wins, player2_wins):
     """
-    Записує рахунок у JSON файл.
+    Записує рахунок гравців у JSON файл.
     Функція зберігає рахунок гравців у JSON файлі конфігурації.
     Якщо файл вже існує, то дані з нього завантажуються і оновлюються.
-    Ім'я гравця, чиї результати зберігаються (str).
-    player1_wins Кількість виграшів гравця 1 (int).
-    player2_wins Кількість виграшів гравця 2 (int).
+
+    Параметри:
+    name (str): Ім'я гравця, чиї результати зберігаються.
+    player1_wins (int): Кількість виграшів гравця 1.
+    player2_wins (int): Кількість виграшів гравця 2.
     """
     data = {}
 
@@ -179,6 +187,7 @@ def save_score_to_file(name, player1_wins, player2_wins):
             except json.JSONDecodeError:
                 pass  # Якщо файл порожній або пошкоджений
 
+    # Додаємо дані про результати за ім'ям
     data[name] = {
         "player1_wins": player1_wins,
         "player2_wins": player2_wins
@@ -187,25 +196,6 @@ def save_score_to_file(name, player1_wins, player2_wins):
     # Записуємо дані у файл із відступами для зручного читання
     with open(CONFIG_FILE, 'w') as file:
         json.dump(data, file, indent=4)
-
-def get_all_scores_from_file():
-    """
-    Зчитує всі рахунки з файлу, починаючи з третього рядка.
-    Функція перевіряє наявність файлу конфігурації.
-    Якщо файл існує, дані зчитуються з JSON,
-    і повертаються всі рахунки, пропускаючи непотрібні поля.
-    Словник з іменами гравців як ключами
-    та їх рахунками як значеннями. Повертає порожній словник у разі помилки.
-    """
-    if os.path.exists(CONFIG_FILE):
-        with open(CONFIG_FILE, 'r') as file:
-            try:
-                data = json.load(file)
-                # Ігноруємо COM порт і baud_rate, повертаємо тільки рахунки
-                return {k: v for k, v in data.items() if not isinstance(v, dict) or 'player1_wins' in v}
-            except json.JSONDecodeError:
-                return {}
-    return {}
 
 
 def save_score():
@@ -231,6 +221,27 @@ def save_score():
         else:
             custom_messagebox("Warning", "You must enter a name to save the score.", "warning")
             break
+
+def get_all_scores_from_file():
+    """
+    Зчитує всі рахунки з файлу, починаючи з третього рядка.
+    Функція перевіряє наявність файлу конфігурації.
+    Якщо файл існує, дані зчитуються з JSON,
+    і повертаються всі рахунки, пропускаючи непотрібні поля.
+    Словник з іменами гравців як ключами
+    та їх рахунками як значеннями. Повертає порожній словник у разі помилки.
+    """
+    if os.path.exists(CONFIG_FILE):
+        with open(CONFIG_FILE, 'r') as file:
+            try:
+                data = json.load(file)
+                # Ігноруємо COM порт і baud_rate, повертаємо тільки рахунки
+                return {k: v for k, v in data.items() if not isinstance(v, dict) or 'player1_wins' in v}
+            except json.JSONDecodeError:
+                return {}
+    return {}
+
+
 
 def load_score():
     """
@@ -328,6 +339,7 @@ def load_score():
     delete_button = tk.Button(load_window, text="Delete save", font=("Helvetica", 14), command=delete_score, bg="red",
                               activebackground="#528aa4")
     delete_button.pack(pady=10)
+
 
 def on_exit():
     """
