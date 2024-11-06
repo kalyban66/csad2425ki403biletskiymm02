@@ -46,3 +46,9 @@ Selected baud rate: 9600
 
 Test finished.
 
+Test 'test_load_config': SUCCESS
+Selected COM port: COM5
+Selected baud rate: 9600
+
+Test finished.
+
