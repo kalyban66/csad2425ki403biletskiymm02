@@ -31,6 +31,7 @@ jobs:
       # Запускаємо тести та зберігаємо результати в файл
       - name: Run tests
         run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/client
           python -m unittest client/test.py > test_results.txt
       # Завантажуємо результати тестування як артефакт
       - name: Upload Test Results
