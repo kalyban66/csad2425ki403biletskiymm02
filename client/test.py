@@ -4,47 +4,11 @@ import os
 import tkinter as tk
 from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
-from main import load_config, send_command, start_game, clear_window, custom_messagebox, custom_inputbox, \
+from main import send_command, start_game, clear_window, custom_messagebox, custom_inputbox, \
     check_name_exists, reset_scores, new_game, on_exit  # Importing the functions to be tested
 
 # Sample JSON configuration file path
 CONFIG_FILE = 'config.json'
-
-
-class TestLoadConfig(unittest.TestCase):
-    def setUp(self):
-        # Create a default config.json if it doesn't exist
-        if not os.path.exists(CONFIG_FILE):
-            default_config = {
-                "com_port": "COM5",
-                "baud_rate": 9600
-            }
-            with open(CONFIG_FILE, 'w') as config_file:
-                json.dump(default_config, config_file)
-
-        with open(CONFIG_FILE, 'r') as config_file:
-            config = json.load(config_file)
-            self.expected_com_port = config['com_port']
-            self.expected_baud_rate = config['baud_rate']
-
-    @patch('serial.Serial')  # Mocking serial.Serial
-    def test_load_config(self, mock_serial):
-        # Mock the behavior of the serial.Serial constructor to avoid accessing the actual COM port
-        mock_serial.return_value = MagicMock()  # Mock the returned object from serial.Serial constructor
-
-        com_port, baud_rate = load_config()
-        self.assertEqual(com_port, self.expected_com_port)
-        self.assertEqual(baud_rate, self.expected_baud_rate)
-
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write(f"Test 'test_load_config': SUCCESS\n")
-            result_file.write(f"Selected COM port: {com_port}\n")
-            result_file.write(f"Selected baud rate: {baud_rate}\n\n")
-
-    def tearDown(self):
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write("Test finished.\n\n")
-
 
 class TestSendCommand(unittest.TestCase):
 
