@@ -10,14 +10,15 @@ from PIL import Image, ImageTk
 
 #Головний файл для управління з'єднанням з Arduino і графічним інтерфейсом
 #Цей файл містить функції для налаштування комунікації з Arduino та завантаження конфігурації з файлу.
-
 # Налаштування COM-порту
 com_port = 'COM5'  # Змініть на свій відповідний COM-порт
 baud_rate = 9600   # Має збігатися зі швидкістю на Arduino
 
+arduino = None
 # Підключення до Arduino
-arduino = serial.Serial(com_port, baud_rate, timeout=1)
-time.sleep(2)
+if __name__ == "__main__" and 'CI' not in os.environ:
+    arduino = serial.Serial(com_port, baud_rate, timeout=1)
+    time.sleep(2)
 
 # Глобальні змінні для вибору гравців та рахунку
 player1_choice = None
@@ -37,9 +38,10 @@ def send_command(command):
     Команда для відправлення (str).
     Відповідь Arduino.
     """
-    arduino.write((command + '\n').encode())  # Відправка команди
-    response = arduino.readline().decode().strip()  # Отримання відповіді
-    return response
+    if arduino is not None:
+        arduino.write((command + '\n').encode())  # Відправка команди
+        response = arduino.readline().decode().strip()  # Отримання відповіді
+        return response
 
 
 def send_command1(message):
@@ -336,7 +338,8 @@ def on_exit():
     Функція закриває серійне з'єднання з Arduino
     та завершує роботу програми.
     """
-    arduino.close()  # Закриває серійне з'єднання
+    if arduino is not None:
+        arduino.close()  # Закриває серійне з'єднання
     root.quit()  # Завершує роботу програми
 
 

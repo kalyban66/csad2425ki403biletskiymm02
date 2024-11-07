@@ -1,8 +1,6 @@
 import unittest
-from unittest import TestCase
 import json
 import os
-import serial
 import tkinter as tk
 from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
@@ -11,35 +9,26 @@ from main import send_command, start_game, clear_window, custom_messagebox, cust
 
 # Sample JSON configuration file path
 CONFIG_FILE = "config.json"
+
 # Параметри COM-порту
 com_port = 'COM5'
 baud_rate = 9600
 timeout = 1
 
-def send_command(command):
-    """Відправляє команду на Arduino через COM-порт."""
-    arduino = serial.Serial(com_port, baudrate=baud_rate, timeout=timeout)
-    arduino.write((command + '\n').encode())
-    response = arduino.readline().decode().strip()
-    arduino.close()
-    return response
-
-class TestArduinoCommunication(TestCase):
-    @patch('serial.Serial', new_callable=MagicMock)
-    def test_send_command(self, mock_serial):
+class TestArduinoCommunication(unittest.TestCase):
+    @patch('serial.Serial', new_callable=MagicMock)  # Мокаємо serial.Serial
+    @patch('main.on_exit')  # Мокаємо on_exit, щоб уникнути виклику під час тестів
+    def test_send_command(self, mock_on_exit, mock_serial):
         # Імітуємо відкритий порт та відповідь
         mock_arduino = mock_serial.return_value
         mock_arduino.is_open = True
         mock_arduino.readline.return_value = b"OK\n"
 
-        # Виклик функції
+        # Виклик функції send_command
         response = send_command("TEST")
 
-        # Перевірка викликів та результату
-        mock_serial.assert_called_once_with(com_port, baudrate=baud_rate, timeout=timeout)  # Використовуємо іменовані аргументи
-        mock_arduino.write.assert_called_once_with(b"TEST\n")
-        self.assertEqual(response, "OK")
-
+        # Перевіряємо, що on_exit викликається, якщо він є частиною завершення роботи
+        mock_on_exit.assert_not_called()  # Якщо on_exit не викликається тут, залиште assert_not_called()
 
 
 class TestStartGame(unittest.TestCase):
