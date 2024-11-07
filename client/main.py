@@ -10,21 +10,10 @@ from PIL import Image, ImageTk
 
 #Головний файл для управління з'єднанням з Arduino і графічним інтерфейсом
 #Цей файл містить функції для налаштування комунікації з Arduino та завантаження конфігурації з файлу.
+# Налаштування COM-порту
+com_port = 'COM5'  # Змініть на свій відповідний COM-порт
+baud_rate = 9600   # Має збігатися зі швидкістю на Arduino
 
-def load_config():
-    """
-    Завантажує ком-порт і швидкість з 'config.json'.
-    функція відкриває файл конфігурації 'config.json', читає налаштування
-    та повертає значення ком-порту та швидкості.
-    tuple Структура з двох елементів: ком-порт (str) та швидкість (int).
-    """
-    # Відкриття і читання конфігурації
-    with open('config.json', 'r') as config_file:
-        config = json.load(config_file)
-        # Повернення налаштувань
-        return config['com_port'], config['baud_rate']
-# Завантаження конфігурації
-com_port, baud_rate = load_config()
 
 # Підключення до Arduino
 arduino = serial.Serial(com_port, baud_rate, timeout=1)

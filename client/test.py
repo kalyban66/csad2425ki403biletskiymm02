@@ -1,6 +1,8 @@
 import unittest
+from unittest import TestCase
 import json
 import os
+import serial
 import tkinter as tk
 from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
@@ -8,38 +10,49 @@ from main import send_command, start_game, clear_window, custom_messagebox, cust
     check_name_exists, reset_scores, new_game, on_exit  # Importing the functions to be tested
 
 # Sample JSON configuration file path
-CONFIG_FILE = 'config.json'
+CONFIG_FILE = "config.json"
 
-class TestSendCommand(unittest.TestCase):
+# Припустимо, функція send_command використовує serial.Serial для Arduino
+def send_command(command):
+    # Ваш код, який відкриває підключення і надсилає команду
+    arduino = serial.Serial('COM5', baudrate=9600, timeout=10)
+    arduino.open()  # Відкриваємо порт (імітовано)
+    arduino.write((command + '\n').encode())  # Відправка команди
+    response = arduino.readline().decode().strip()
+    arduino.close()  # Закриваємо порт
+    return response
 
-    def setUp(self):
-        # Sample command and expected response
-        self.test_command = "TEST"
-        self.expected_response = "approved"
+class TestArduinoCommunication(TestCase):
+    @patch('serial.Serial', new_callable=MagicMock)
+    def test_send_command(self, mock_serial):
+        # Параметри для налаштування з'єднання
+        com_port = 'COM5'
+        baud_rate = 9600
+        timeout = 10
+        test_command = "TEST"
 
-    @patch('main.arduino')  # Mocking the arduino object
-    def test_send_command(self, mock_arduino):
-        # Setting up the mocked arduino object to return the expected response
-        mock_arduino.write = MagicMock()  # Mocking the write method
-        mock_arduino.readline = MagicMock(return_value=(self.expected_response + '\n').encode())  # Mocking readline
+        # Налаштування мок-об'єкта Serial
+        mock_arduino = mock_serial.return_value
+        mock_arduino.is_open = True  # Імітація, що порт відкритий
+        mock_arduino.readline.return_value = b"OK\n"  # Імітація відповіді від Arduino
 
-        # Calling the function
-        response = send_command(self.test_command)
+        # Викликаємо функцію з мок-об'єктом
+        response = send_command(test_command)
 
-        # Checking the results
-        mock_arduino.write.assert_called_once_with((self.test_command + '\n').encode())
-        self.assertEqual(response, self.expected_response, "Received response does not match the expected.")
+        # Перевірка, що Serial був ініціалізований з правильними параметрами
+        mock_serial.assert_called_once_with(com_port, baudrate=baud_rate, timeout=timeout)
 
-        # Writing the result to the file
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write(f"Test 'test_send_command': SUCCESS\n")
-            result_file.write(f"Command sent: {self.test_command}\n")
-            result_file.write(f"Response received: {response}\n\n")
+        # Перевірка, що open був викликаний для відкриття порту
+        mock_arduino.open.assert_called_once()
 
-    def tearDown(self):
-        # Writing test completion to the file
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write("Test finished.\n\n")
+        # Перевірка, що була відправлена команда
+        mock_arduino.write.assert_called_once_with(b"TEST\n")
+
+        # Перевірка отриманої відповіді
+        self.assertEqual(response, "OK")
+
+        # Закриття порту
+        mock_arduino.close.assert_called_once()
 
 
 class TestStartGame(unittest.TestCase):
