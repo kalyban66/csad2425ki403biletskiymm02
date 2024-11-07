@@ -681,34 +681,32 @@ def resize_image(path, width, height):
     image = Image.open(path)  # Відкриваємо зображення з вказаного шляху
     return ImageTk.PhotoImage(image.resize((width, height)))  # Змінюємо розмір і повертаємо PhotoImage
 
+# Визначимо глобальну змінну для перевірки середовища
+IS_TEST_ENVIRONMENT = os.environ.get('TEST_ENV') == 'false'
 
-# Створюємо основне вікно для гри
-root = tk.Tk()  # Ініціалізуємо Tkinter
-root.title("Rock-Paper-Scissors")  # Встановлюємо заголовок вікна
-root.geometry("500x600")  # Встановлюємо розміри вікна
-root.configure(bg="#282c34")  # Встановлюємо фон вікна
+# Створення основного вікна тільки якщо не в тестовому середовищі
+if not IS_TEST_ENVIRONMENT:
+    root = tk.Tk()  # Ініціалізуємо Tkinter
+    root.title("Rock-Paper-Scissors")  # Встановлюємо заголовок вікна
+    root.geometry("500x600")  # Встановлюємо розміри вікна
+    root.configure(bg="#282c34")  # Встановлюємо фон вікна
 
-# Створюємо меню для гри
-menu = Menu(root)  # Ініціалізуємо меню
-root.config(menu=menu)  # Призначаємо меню головному вікну
+    # Створюємо меню для гри
+    menu = Menu(root)  # Ініціалізуємо меню
+    root.config(menu=menu)  # Призначаємо меню головному вікну
 
-# Створюємо підменю "Game"
-game_menu = Menu(menu, tearoff=0)  # Ініціалізуємо підменю без роздільника
-menu.add_cascade(label="Game", menu=game_menu)  # Додаємо підменю до головного меню
+    # Створюємо підменю "Game"
+    game_menu = Menu(menu, tearoff=0)  # Ініціалізуємо підменю без роздільника
+    menu.add_cascade(label="Game", menu=game_menu)  # Додаємо підменю до головного меню
 
-# Додаємо команди до підменю
-game_menu.add_command(label="New", command=new_game)  # Команда для нової гри
-game_menu.add_command(label="Save", command=save_score)  # Команда для збереження результату
-game_menu.add_command(label="Load", command=load_score)  # Команда для завантаження результату
+    # Додаємо команди до підменю
+    game_menu.add_command(label="New", command=new_game)  # Команда для нової гри
+    game_menu.add_command(label="Save", command=save_score)  # Команда для збереження результату
+    game_menu.add_command(label="Load", command=load_score)  # Команда для завантаження результату
 
-# Показуємо початкову сторінку дій
-show_actions_page()  # Викликаємо функцію для відображення сторінки дій
+    # Показуємо початкову сторінку дій
+    show_actions_page()  # Викликаємо функцію для відображення сторінки дій
 
-# Обробка події закриття вікна
-root.protocol("WM_DELETE_WINDOW", on_exit)  # Визначаємо, що робити при закритті вікна
-root.mainloop()  # Запускаємо основний цикл обробки подій
-
-
-
-
-
+    # Обробка події закриття вікна
+    root.protocol("WM_DELETE_WINDOW", on_exit)  # Визначаємо, що робити при закритті вікна
+    root.mainloop()  # Запускаємо основний цикл обробки подій

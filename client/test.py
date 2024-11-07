@@ -7,11 +7,11 @@ from unittest.mock import patch, MagicMock
 from main import send_command, start_game, clear_window, custom_messagebox, custom_inputbox, \
     check_name_exists, reset_scores, new_game, on_exit  # Importing the functions to be tested
 
+# Встановлюємо флаг для тестового середовища
+IS_TEST_ENVIRONMENT = os.environ.get('TEST_ENV') == 'true'
+
 # Sample JSON configuration file path
 CONFIG_FILE = "config.json"
-
-# CI environment flag to avoid manual window management
-IS_CI_ENVIRONMENT = os.environ.get('CI', 'false') == 'true'
 
 class TestArduinoCommunication(unittest.TestCase):
     @patch('serial.Serial', new_callable=MagicMock)  # Mock serial.Serial
@@ -46,6 +46,9 @@ class TestCheckNameExists(unittest.TestCase):
         with open(CONFIG_FILE, 'w') as config_file:
             json.dump(test_config, config_file)
 
+        # Set environment to simulate test environment
+        os.environ['TEST_ENV'] = 'true'  # Ensure the GUI doesn't start
+
     def test_check_name_exists(self):
         # Test for existing name
         self.assertTrue(check_name_exists(self.test_name_exists),
@@ -68,6 +71,7 @@ class TestCheckNameExists(unittest.TestCase):
                 json.dump(self.original_config, config_file)
         elif os.path.exists(CONFIG_FILE):
             os.remove(CONFIG_FILE)  # Remove test config if it was created
+
 
 class TestStartGame(unittest.TestCase):
 
@@ -102,8 +106,8 @@ class TestClearWindow(unittest.TestCase):
 
     def setUp(self):
         self.root = tk.Tk()
-        if IS_CI_ENVIRONMENT:
-            self.root.after(100, self.root.destroy)  # Auto-close window in CI environment
+        if IS_TEST_ENVIRONMENT:
+            self.root.after(10, self.root.destroy)  # Auto-close window in CI environment
         tk.Label(self.root, text="Test Label 1").pack()
         tk.Label(self.root, text="Test Label 2").pack()
 
@@ -124,8 +128,8 @@ class TestCustomMessageBox(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
         self.root.withdraw()
-        if IS_CI_ENVIRONMENT:
-            self.root.after(100, self.root.destroy)  # Auto-close in CI environment
+        if IS_TEST_ENVIRONMENT:
+            self.root.after(10, self.root.destroy)  # Auto-close in CI environment
 
     def test_custom_messagebox(self):
         title = "Test Title"
@@ -141,6 +145,12 @@ class TestCustomMessageBox(unittest.TestCase):
         self.assertEqual(label.cget("text"), message)
 
         msg_box.destroy()
+
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_messagebox': SUCCESS\n")
+            result_file.write(f"Message box title: {title}\n")
+            result_file.write(f"Message box message: {message}\n\n")
 
     def tearDown(self):
         self.root.destroy()
@@ -162,6 +172,11 @@ class TestCustomInputBox(unittest.TestCase):
 
             self.assertEqual(user_input, None, "The input box did not return the expected input.")
 
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_inputbox_ok': SUCCESS\n")
+            result_file.write(f"User input: {user_input}\n\n")
+
     def test_custom_inputbox_cancel(self):
         title = "Input Test"
         message = "Enter your name:"
@@ -173,12 +188,16 @@ class TestCustomInputBox(unittest.TestCase):
 
             self.assertIsNone(user_input, "The input box did not return None on cancel.")
 
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_inputbox_cancel': SUCCESS\n")
+            result_file.write(f"User input: {user_input}\n\n")
+
     def tearDown(self):
         self.root.destroy()
 
 
 class TestOnExit(unittest.TestCase):
-
     @patch('main.arduino', new_callable=MagicMock)  # Mock arduino object
     @patch('main.root.quit')  # Mock root.quit to prevent actual window close
     def test_on_exit(self, mock_quit, mock_arduino):
@@ -186,9 +205,13 @@ class TestOnExit(unittest.TestCase):
         mock_arduino.close.assert_called_once()
         mock_quit.assert_called_once()
 
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_on_exit': SUCCESS\n")
+            result_file.write("Arduino connection was properly closed and window quit was called.\n\n")
+
 
 class TestNewGame(unittest.TestCase):
-
     @patch('main.clear_window')  # Mock clear_window
     @patch('main.show_main_menu')  # Mock show_main_menu
     def test_new_game(self, mock_show_menu, mock_clear_window):
@@ -196,9 +219,13 @@ class TestNewGame(unittest.TestCase):
         mock_clear_window.assert_called_once()
         mock_show_menu.assert_called_once()
 
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_new_game': SUCCESS\n")
+            result_file.write("New game triggered, window cleared, and main menu displayed.\n\n")
+
 
 class TestResetScores(unittest.TestCase):
-
     @patch('main.send_command')  # Mock send_command to Arduino
     @patch('main.show_results')  # Mock show_results
     def test_reset_scores(self, mock_show_results, mock_send_command):
@@ -212,6 +239,12 @@ class TestResetScores(unittest.TestCase):
         self.assertEqual(player2_wins, 0)
         mock_send_command.assert_called_once_with('reset')
         mock_show_results.assert_called_once_with("Scores reset.")
+
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_reset_scores': SUCCESS\n")
+            result_file.write(f"Player 1 wins: {player1_wins}, Player 2 wins: {player2_wins}\n")
+            result_file.write("Scores were successfully reset.\n\n")
 
 
 # Running the tests
