@@ -161,3 +161,12 @@ Response received: approved
 
 Test finished.
 
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
