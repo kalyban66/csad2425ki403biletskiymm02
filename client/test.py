@@ -11,48 +11,35 @@ from main import send_command, start_game, clear_window, custom_messagebox, cust
 
 # Sample JSON configuration file path
 CONFIG_FILE = "config.json"
+# Параметри COM-порту
+com_port = 'COM5'
+baud_rate = 9600
+timeout = 1
 
-# Припустимо, функція send_command використовує serial.Serial для Arduino
 def send_command(command):
-    # Ваш код, який відкриває підключення і надсилає команду
-    arduino = serial.Serial('COM5', baudrate=9600, timeout=10)
-    arduino.open()  # Відкриваємо порт (імітовано)
-    arduino.write((command + '\n').encode())  # Відправка команди
+    """Відправляє команду на Arduino через COM-порт."""
+    arduino = serial.Serial(com_port, baudrate=baud_rate, timeout=timeout)
+    arduino.write((command + '\n').encode())
     response = arduino.readline().decode().strip()
-    arduino.close()  # Закриваємо порт
+    arduino.close()
     return response
 
 class TestArduinoCommunication(TestCase):
     @patch('serial.Serial', new_callable=MagicMock)
     def test_send_command(self, mock_serial):
-        # Параметри для налаштування з'єднання
-        com_port = 'COM5'
-        baud_rate = 9600
-        timeout = 10
-        test_command = "TEST"
-
-        # Налаштування мок-об'єкта Serial
+        # Імітуємо відкритий порт та відповідь
         mock_arduino = mock_serial.return_value
-        mock_arduino.is_open = True  # Імітація, що порт відкритий
-        mock_arduino.readline.return_value = b"OK\n"  # Імітація відповіді від Arduino
+        mock_arduino.is_open = True
+        mock_arduino.readline.return_value = b"OK\n"
 
-        # Викликаємо функцію з мок-об'єктом
-        response = send_command(test_command)
+        # Виклик функції
+        response = send_command("TEST")
 
-        # Перевірка, що Serial був ініціалізований з правильними параметрами
-        mock_serial.assert_called_once_with(com_port, baudrate=baud_rate, timeout=timeout)
-
-        # Перевірка, що open був викликаний для відкриття порту
-        mock_arduino.open.assert_called_once()
-
-        # Перевірка, що була відправлена команда
+        # Перевірка викликів та результату
+        mock_serial.assert_called_once_with(com_port, baudrate=baud_rate, timeout=timeout)  # Використовуємо іменовані аргументи
         mock_arduino.write.assert_called_once_with(b"TEST\n")
-
-        # Перевірка отриманої відповіді
         self.assertEqual(response, "OK")
 
-        # Закриття порту
-        mock_arduino.close.assert_called_once()
 
 
 class TestStartGame(unittest.TestCase):

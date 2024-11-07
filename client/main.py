@@ -10,10 +10,10 @@ from PIL import Image, ImageTk
 
 #Головний файл для управління з'єднанням з Arduino і графічним інтерфейсом
 #Цей файл містить функції для налаштування комунікації з Arduino та завантаження конфігурації з файлу.
+
 # Налаштування COM-порту
 com_port = 'COM5'  # Змініть на свій відповідний COM-порт
 baud_rate = 9600   # Має збігатися зі швидкістю на Arduino
-
 
 # Підключення до Arduino
 arduino = serial.Serial(com_port, baud_rate, timeout=1)
