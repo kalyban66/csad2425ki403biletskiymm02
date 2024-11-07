@@ -10,49 +10,86 @@ from main import send_command, start_game, clear_window, custom_messagebox, cust
 # Sample JSON configuration file path
 CONFIG_FILE = "config.json"
 
-# Параметри COM-порту
-com_port = 'COM5'
-baud_rate = 9600
-timeout = 1
+# CI environment flag to avoid manual window management
+IS_CI_ENVIRONMENT = os.environ.get('CI', 'false') == 'true'
 
 class TestArduinoCommunication(unittest.TestCase):
-    @patch('serial.Serial', new_callable=MagicMock)  # Мокаємо serial.Serial
-    @patch('main.on_exit')  # Мокаємо on_exit, щоб уникнути виклику під час тестів
+    @patch('serial.Serial', new_callable=MagicMock)  # Mock serial.Serial
+    @patch('main.on_exit')  # Mock on_exit to avoid calling it during tests
     def test_send_command(self, mock_on_exit, mock_serial):
-        # Імітуємо відкритий порт та відповідь
         mock_arduino = mock_serial.return_value
         mock_arduino.is_open = True
         mock_arduino.readline.return_value = b"OK\n"
 
-        # Виклик функції send_command
+        # Call send_command function
         response = send_command("TEST")
 
-        # Перевіряємо, що on_exit викликається, якщо він є частиною завершення роботи
-        mock_on_exit.assert_not_called()  # Якщо on_exit не викликається тут, залиште assert_not_called()
+        # Ensure on_exit is not called here
+        mock_on_exit.assert_not_called()
+
+class TestCheckNameExists(unittest.TestCase):
+
+    def setUp(self):
+        # Backup current config.json if it exists
+        if os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, 'r') as config_file:
+                self.original_config = json.load(config_file)
+        else:
+            self.original_config = {}
+
+        # Prepare the test config
+        self.test_name_exists = "existing_name"
+        self.test_name_not_exists = "non_existent_name"
+
+        # Write test data to config.json
+        test_config = {self.test_name_exists: True}
+        with open(CONFIG_FILE, 'w') as config_file:
+            json.dump(test_config, config_file)
+
+    def test_check_name_exists(self):
+        # Test for existing name
+        self.assertTrue(check_name_exists(self.test_name_exists),
+                        f"Name '{self.test_name_exists}' should exist in the JSON file.")
+
+        # Test for non-existing name
+        self.assertFalse(check_name_exists(self.test_name_not_exists),
+                         f"Name '{self.test_name_not_exists}' should not exist in the JSON file.")
+
+    def test_check_name_exists_file_not_exist(self):
+        # Delete config.json temporarily
+        os.remove(CONFIG_FILE) if os.path.exists(CONFIG_FILE) else None
+        self.assertFalse(check_name_exists("any_name"),
+                         "Function should return False if the JSON file does not exist.")
+
+    def tearDown(self):
+        # Restore the original config.json
+        if self.original_config:
+            with open(CONFIG_FILE, 'w') as config_file:
+                json.dump(self.original_config, config_file)
+        elif os.path.exists(CONFIG_FILE):
+            os.remove(CONFIG_FILE)  # Remove test config if it was created
+
 
 
 class TestStartGame(unittest.TestCase):
 
-    @patch('main.send_command')  # Mocking send_command to check the response
+    @patch('main.send_command')  # Mock send_command to check the response
     def test_start_game_approved(self, mock_send_command):
-        # Setting up the mocked response from send_command
         mock_send_command.return_value = "approved"
-
-        # Testing the game mode "Man vs AI"
         mode = "Man vs AI"
-        start_game(mode)  # Calling the function
+        start_game(mode)  # Call the function
 
-        # Checking that send_command was called with the correct mode
+        # Verify send_command was called with the correct mode
         mock_send_command.assert_called_once_with(f"mode:{mode}")
 
-        # Writing the result to the file
+        # Write the result to the file
         with open('test_results.txt', 'a') as result_file:
             result_file.write(f"Test 'test_start_game_approved' for mode '{mode}': SUCCESS\n")
             result_file.write(f"Mode sent: {mode}\n")
             result_file.write(f"Response received: {mock_send_command.return_value}\n\n")
 
     def tearDown(self):
-        # Writing test completion to the file
+        # Write test completion to the file
         with open('test_results.txt', 'a') as result_file:
             result_file.write("Test finished.\n\n")
 
@@ -66,36 +103,31 @@ def clear_window(root):
 class TestClearWindow(unittest.TestCase):
 
     def setUp(self):
-        # Initializing the window before each test
         self.root = tk.Tk()
-        # Adding a few widgets for testing
+        if IS_CI_ENVIRONMENT:
+            self.root.after(100, self.root.destroy)  # Auto-close window in CI environment
         tk.Label(self.root, text="Test Label 1").pack()
         tk.Label(self.root, text="Test Label 2").pack()
 
     def test_clear_window(self):
-        # Ensuring there are two widgets before clearing
         self.assertEqual(len(self.root.winfo_children()), 2, "Before clearing, there should be 2 widgets.")
-
-        # Calling the clear function
         clear_window(self.root)
-
-        # Checking that the window is cleared
         self.assertEqual(len(self.root.winfo_children()), 0, "The window was not cleared, widgets were not destroyed.")
 
-        # Writing the result to the file
+        # Write the result to the file
         with open('test_results.txt', 'a') as result_file:
             result_file.write(f"Test 'test_clear_window': SUCCESS\n")
             result_file.write("The window was successfully cleared.\n\n")
 
     def tearDown(self):
-        # Closing the window after each test
         self.root.destroy()
-
 
 class TestCustomMessageBox(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
-        self.root.withdraw()  # Hide the main window
+        self.root.withdraw()
+        if IS_CI_ENVIRONMENT:
+            self.root.after(100, self.root.destroy)  # Auto-close in CI environment
 
     def test_custom_messagebox(self):
         title = "Test Title"
@@ -103,9 +135,8 @@ class TestCustomMessageBox(unittest.TestCase):
         custom_messagebox(title, message, "info")
         msg_box = Toplevel(self.root)
         msg_box.title(title)
-        tk.Label(msg_box, text=message).pack()  # Ensure the label is created for the test
+        tk.Label(msg_box, text=message).pack()
 
-        # Check title and message content
         self.assertEqual(msg_box.title(), title)
         label = msg_box.children.get('!label')
         self.assertIsNotNone(label, "The label was not found.")
@@ -116,7 +147,7 @@ class TestCustomMessageBox(unittest.TestCase):
     def tearDown(self):
         self.root.destroy()
 
-# Adjust test_custom_inputbox_ok as follows:
+
 class TestCustomInputBox(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
@@ -128,8 +159,8 @@ class TestCustomInputBox(unittest.TestCase):
         with patch('tkinter.Toplevel') as MockToplevel:
             instance = MockToplevel.return_value
             instance.entry = MagicMock()
-            instance.entry.get.return_value = None  # Simulating user input
-            user_input = custom_inputbox(title, message)  # Call the function here
+            instance.entry.get.return_value = None  # Simulate user input
+            user_input = custom_inputbox(title, message)
 
             self.assertEqual(user_input, None, "The input box did not return the expected input.")
 
@@ -139,7 +170,7 @@ class TestCustomInputBox(unittest.TestCase):
         with patch('tkinter.Toplevel') as MockToplevel:
             instance = MockToplevel.return_value
             instance.entry = MagicMock()
-            instance.entry.get.return_value = ""  # Simulating cancel
+            instance.entry.get.return_value = ""  # Simulate cancel
             user_input = custom_inputbox(title, message)
 
             self.assertIsNone(user_input, "The input box did not return None on cancel.")
@@ -147,101 +178,43 @@ class TestCustomInputBox(unittest.TestCase):
     def tearDown(self):
         self.root.destroy()
 
-def check_name_exists(name):
-    """
-    Перевіряє, чи існує ім'я в JSON файлі.
-    """
-    if os.path.exists(CONFIG_FILE):
-        with open(CONFIG_FILE, 'r') as file:
-            data = json.load(file)
-            return name in data
-    return False
 
-class TestCheckNameExists(unittest.TestCase):
-
-    def setUp(self):
-        # Завантажте дані з config.json
-        if os.path.exists(CONFIG_FILE):
-            with open(CONFIG_FILE, 'r') as config_file:
-                self.config = json.load(config_file)
-        else:
-            self.config = {}
-
-    def test_check_name_exists(self):
-        # Використовуйте реальне ім'я з конфігураційного файлу
-        self.test_name_exists = next(iter(self.config.keys()))  # Перше ім'я з конфігурації
-        self.test_name_not_exists = "non_existent_name"  # Ім'я, яке не повинно бути знайдено
-
-        # Тест для існуючого імені
-        self.assertTrue(check_name_exists(self.test_name_exists),
-                        f"Name '{self.test_name_exists}' should exist in the JSON file.")
-
-        # Тест для неіснуючого імені
-        self.assertFalse(check_name_exists(self.test_name_not_exists),
-                         f"Name '{self.test_name_not_exists}' should not exist in the JSON file.")
-
-    def test_check_name_exists_file_not_exist(self):
-        # Видалити файл для цього тесту
-        os.remove(CONFIG_FILE) if os.path.exists(CONFIG_FILE) else None
-        self.assertFalse(check_name_exists("any_name"),
-                         "Function should return False if the JSON file does not exist.")
-
-
-# Тест для on_exit
 class TestOnExit(unittest.TestCase):
 
-    @patch('main.arduino.close')  # Замокати функцію закриття Arduino
-    @patch('main.root.quit')  # Замокати функцію закриття вікна
-    def test_on_exit(self, mock_quit, mock_close):
-        # Виклик функції on_exit
+    @patch('main.arduino', new_callable=MagicMock)  # Mock arduino object
+    @patch('main.root.quit')  # Mock root.quit to prevent actual window close
+    def test_on_exit(self, mock_quit, mock_arduino):
         on_exit()
-
-        # Перевірка, чи було закрито з'єднання з Arduino
-        mock_close.assert_called_once()
-
-        # Перевірка, чи було закрито вікно
+        mock_arduino.close.assert_called_once()
         mock_quit.assert_called_once()
 
 
-# Тест для new_game
 class TestNewGame(unittest.TestCase):
 
-    @patch('main.clear_window')  # Замокати функцію очищення вікна
-    @patch('main.show_main_menu')  # Замокати функцію показу головного меню
+    @patch('main.clear_window')  # Mock clear_window
+    @patch('main.show_main_menu')  # Mock show_main_menu
     def test_new_game(self, mock_show_menu, mock_clear_window):
-        # Виклик функції new_game
         new_game()
-
-        # Перевірка, чи викликалася функція очищення вікна
         mock_clear_window.assert_called_once()
-
-        # Перевірка, чи викликалася функція показу головного меню
         mock_show_menu.assert_called_once()
 
 
-# Тест для reset_scores
 class TestResetScores(unittest.TestCase):
 
-    @patch('main.send_command')  # Замокати функцію відправки команди на Arduino
-    @patch('main.show_results')  # Замокати функцію показу результатів
+    @patch('main.send_command')  # Mock send_command to Arduino
+    @patch('main.show_results')  # Mock show_results
     def test_reset_scores(self, mock_show_results, mock_send_command):
-        # Перевірка початкових значень
         global player1_wins, player2_wins
         player1_wins = 0
         player2_wins = 0
 
-        # Виклик функції reset_scores
         reset_scores()
 
-        # Перевірка, чи скинуто рахунки
         self.assertEqual(player1_wins, 0)
         self.assertEqual(player2_wins, 0)
-
-        # Перевірка, чи була надіслана команда 'reset' на Arduino
         mock_send_command.assert_called_once_with('reset')
-
-        # Перевірка, чи викликалася функція для показу повідомлення
         mock_show_results.assert_called_once_with("Scores reset.")
+
 
 # Running the tests
 if __name__ == '__main__':
