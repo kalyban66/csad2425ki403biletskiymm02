@@ -4,7 +4,7 @@ import os
 import tkinter as tk
 from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
-from main import send_command, start_game, clear_window, custom_messagebox, custom_inputbox, \
+from main import send_command, clear_window, custom_messagebox, custom_inputbox, \
     check_name_exists, reset_scores, new_game, on_exit
 
 CONFIG_FILE = "config.json"

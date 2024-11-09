@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build Python(client)
     runs-on: ubuntu-latest  # Runs on the latest Ubuntu
 
     steps:
@@ -43,6 +44,7 @@ jobs:
 
   # Additional job for Arduino project
   arduino:
+    name: Build Arduino Uno(server)
     runs-on: ubuntu-latest
 
     steps:
@@ -71,7 +73,6 @@ jobs:
           name: arduino-build
           path: server/build/*
 
-  # Job to generate Doxygen documentation
   build-docs:
     name: Build Doxygen documentation
     runs-on: ubuntu-latest
