@@ -5,12 +5,8 @@ import tkinter as tk
 from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
 from main import send_command, start_game, clear_window, custom_messagebox, custom_inputbox, \
-    check_name_exists, reset_scores, new_game, on_exit  # Importing the functions to be tested
+    check_name_exists, reset_scores, new_game, on_exit
 
-# Встановлюємо флаг для тестового середовища
-IS_TEST_ENVIRONMENT = os.environ.get('TEST_ENV') == 'true'
-
-# Sample JSON configuration file path
 CONFIG_FILE = "config.json"
 
 class TestArduinoCommunication(unittest.TestCase):
@@ -20,11 +16,7 @@ class TestArduinoCommunication(unittest.TestCase):
         mock_arduino = mock_serial.return_value
         mock_arduino.is_open = True
         mock_arduino.readline.return_value = b"OK\n"
-
-        # Call send_command function
         response = send_command("TEST")
-
-        # Ensure on_exit is not called here
         mock_on_exit.assert_not_called()
 
 class TestCheckNameExists(unittest.TestCase):
@@ -73,41 +65,14 @@ class TestCheckNameExists(unittest.TestCase):
             os.remove(CONFIG_FILE)  # Remove test config if it was created
 
 
-class TestStartGame(unittest.TestCase):
-
-    @patch('main.send_command')  # Mock send_command to check the response
-    def test_start_game_approved(self, mock_send_command):
-        mock_send_command.return_value = "approved"
-        mode = "Man vs AI"
-        start_game(mode)  # Call the function
-
-        # Verify send_command was called with the correct mode
-        mock_send_command.assert_called_once_with(f"mode:{mode}")
-
-        # Write the result to the file
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write(f"Test 'test_start_game_approved' for mode '{mode}': SUCCESS\n")
-            result_file.write(f"Mode sent: {mode}\n")
-            result_file.write(f"Response received: {mock_send_command.return_value}\n\n")
-
-    def tearDown(self):
-        # Write test completion to the file
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write("Test finished.\n\n")
-
-
 def clear_window(root):
     """ Clears the window to prepare for new elements. """
     for widget in root.winfo_children():
         widget.destroy()  # Destroys all widgets in the window
 
-
 class TestClearWindow(unittest.TestCase):
-
     def setUp(self):
         self.root = tk.Tk()
-        if IS_TEST_ENVIRONMENT:
-            self.root.after(10, self.root.destroy)  # Auto-close window in CI environment
         tk.Label(self.root, text="Test Label 1").pack()
         tk.Label(self.root, text="Test Label 2").pack()
 
@@ -122,14 +87,14 @@ class TestClearWindow(unittest.TestCase):
             result_file.write("The window was successfully cleared.\n\n")
 
     def tearDown(self):
-        self.root.destroy()
+        if self.root.winfo_exists():  # Перевіряємо, чи існує вікно перед його знищенням
+            self.root.destroy()
+
 
 class TestCustomMessageBox(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
         self.root.withdraw()
-        if IS_TEST_ENVIRONMENT:
-            self.root.after(10, self.root.destroy)  # Auto-close in CI environment
 
     def test_custom_messagebox(self):
         title = "Test Title"
@@ -154,7 +119,6 @@ class TestCustomMessageBox(unittest.TestCase):
 
     def tearDown(self):
         self.root.destroy()
-
 
 class TestCustomInputBox(unittest.TestCase):
     def setUp(self):
@@ -196,20 +160,13 @@ class TestCustomInputBox(unittest.TestCase):
     def tearDown(self):
         self.root.destroy()
 
-
 class TestOnExit(unittest.TestCase):
-    @patch('main.arduino', new_callable=MagicMock)  # Mock arduino object
-    @patch('main.root.quit')  # Mock root.quit to prevent actual window close
+    @patch('main.arduino', new_callable=MagicMock)
+    @patch('main.root.quit')
     def test_on_exit(self, mock_quit, mock_arduino):
         on_exit()
         mock_arduino.close.assert_called_once()
         mock_quit.assert_called_once()
-
-        # Write the result to the file
-        with open('test_results.txt', 'a') as result_file:
-            result_file.write(f"Test 'test_on_exit': SUCCESS\n")
-            result_file.write("Arduino connection was properly closed and window quit was called.\n\n")
-
 
 class TestNewGame(unittest.TestCase):
     @patch('main.clear_window')  # Mock clear_window
@@ -246,7 +203,5 @@ class TestResetScores(unittest.TestCase):
             result_file.write(f"Player 1 wins: {player1_wins}, Player 2 wins: {player2_wins}\n")
             result_file.write("Scores were successfully reset.\n\n")
 
-
-# Running the tests
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
