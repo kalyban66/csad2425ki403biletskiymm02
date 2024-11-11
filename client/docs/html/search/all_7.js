@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['new_5fgame_0',['new_game',['../namespacemain.html#ae90c4b1f15a403cba757c3d99f25d722',1,'main']]]
+  ['main_0',['main',['../namespacemain.html',1,'']]],
+  ['main_2epy_1',['main.py',['../main_8py.html',1,'']]],
+  ['menu_2',['menu',['../namespacemain.html#aacf1f7fe8ef30ab56f7da7f1e85a597e',1,'main']]]
 ];

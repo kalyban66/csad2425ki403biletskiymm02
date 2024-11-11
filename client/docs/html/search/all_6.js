@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacemain.html',1,'']]],
-  ['main_2epy_1',['main.py',['../main_8py.html',1,'']]],
-  ['menu_2',['menu',['../namespacemain.html#aacf1f7fe8ef30ab56f7da7f1e85a597e',1,'main']]]
+  ['label_0',['label',['../namespacemain.html#aced2f0e5b178381f9f0a0bf045d8b11d',1,'main']]],
+  ['load_5fscore_1',['load_score',['../namespacemain.html#ab175f1bd22b9625a68f073abf120f29e',1,'main']]]
 ];

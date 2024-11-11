@@ -1,0 +1,2022 @@
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_on_exit': SUCCESS
+Arduino connection was properly closed and window quit was called.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_start_game_approved' for mode 'Man vs AI': SUCCESS
+Mode sent: Man vs AI
+Response received: approved
+
+Test finished.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+

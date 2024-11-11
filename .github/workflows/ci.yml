@@ -1,0 +1,97 @@
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    name: Build Python(client)
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Specify Python version
+
+      # Install dependencies including Xvfb
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb  # Install Xvfb for virtual display
+          python -m pip install --upgrade pip
+          pip install pyserial pillow
+
+      # Run tests in virtual display using Xvfb
+      - name: Run tests
+        working-directory: client
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/client
+          xvfb-run -a python -m unittest test.py > test_results.txt
+
+      # Upload test results as artifacts
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test_results.txt  # Specify the test results file
+
+  # Additional job for Arduino project
+  arduino:
+    name: Build Arduino Uno(server)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Arduino CLI for compilation
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+        with:
+          version: '0.19.2'
+
+      # Install Arduino AVR platform
+      - name: Install Arduino AVR platform
+        run: arduino-cli core install arduino:avr
+
+      # Compile the Arduino project
+      - name: Build Arduino Project
+        run: |
+          arduino-cli compile --fqbn arduino:avr:uno server/server.ino
+
+      # Upload the Arduino build result as an artifact
+      - name: Upload Arduino Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: arduino-build
+          path: server/build/*
+
+  build-docs:
+    name: Build Doxygen documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+
+      - name: Generate Doxygen documentation
+        run: |
+          cd ./client
+          doxygen Doxyfile
+
+      - name: Upload documentation artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Client_Documentation
+          path: ./client/docs/

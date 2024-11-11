@@ -1,7 +1,12 @@
 var searchData=
 [
-  ['testcustominputbox_0',['TestCustomInputbox',['../classtest_1_1_test_custom_inputbox.html',1,'test']]],
-  ['testgamefunctions_1',['TestGameFunctions',['../classtest_1_1_test_game_functions.html',1,'test']]],
-  ['testloadscore_2',['TestLoadScore',['../classtest_1_1_test_game_functions_1_1_test_load_score.html',1,'test::TestGameFunctions']]],
-  ['testshowresults_3',['TestShowResults',['../classtest_1_1_test_show_results.html',1,'test']]]
+  ['testarduinocommunication_0',['TestArduinoCommunication',['../classtest_1_1_test_arduino_communication.html',1,'test']]],
+  ['testchecknameexists_1',['TestCheckNameExists',['../classtest_1_1_test_check_name_exists.html',1,'test']]],
+  ['testclearwindow_2',['TestClearWindow',['../classtest_1_1_test_clear_window.html',1,'test']]],
+  ['testcustominputbox_3',['TestCustomInputBox',['../classtest_1_1_test_custom_input_box.html',1,'test']]],
+  ['testcustommessagebox_4',['TestCustomMessageBox',['../classtest_1_1_test_custom_message_box.html',1,'test']]],
+  ['testnewgame_5',['TestNewGame',['../classtest_1_1_test_new_game.html',1,'test']]],
+  ['testonexit_6',['TestOnExit',['../classtest_1_1_test_on_exit.html',1,'test']]],
+  ['testresetscores_7',['TestResetScores',['../classtest_1_1_test_reset_scores.html',1,'test']]],
+  ['teststartgame_8',['TestStartGame',['../classtest_1_1_test_start_game.html',1,'test']]]
 ];

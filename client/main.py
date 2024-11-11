@@ -1,3 +1,4 @@
+import unittest
 import serial
 import time
 import tkinter as tk
@@ -8,28 +9,17 @@ from tkinter import ttk
 from tkinter import Menu, Toplevel
 from PIL import Image, ImageTk
 
-
 #Головний файл для управління з'єднанням з Arduino і графічним інтерфейсом
 #Цей файл містить функції для налаштування комунікації з Arduino та завантаження конфігурації з файлу.
+# Налаштування COM-порту
+com_port = 'COM5'  # Змініть на свій відповідний COM-порт
+baud_rate = 9600   # Має збігатися зі швидкістю на Arduino
 
-def load_config():
-    """
-    Завантажує ком-порт і швидкість з 'config.json'.
-    функція відкриває файл конфігурації 'config.json', читає налаштування
-    та повертає значення ком-порту та швидкості.
-    tuple Структура з двох елементів: ком-порт (str) та швидкість (int).
-    """
-    # Відкриття і читання конфігурації
-    with open('config.json', 'r') as config_file:
-        config = json.load(config_file)
-        # Повернення налаштувань
-        return config['com_port'], config['baud_rate']
-# Завантаження конфігурації
-com_port, baud_rate = load_config()
-
+arduino = None
 # Підключення до Arduino
-arduino = serial.Serial(com_port, baud_rate, timeout=1)
-time.sleep(2)
+if __name__ == "__main__" and 'CI' not in os.environ:
+    arduino = serial.Serial(com_port, baud_rate, timeout=1)
+    time.sleep(2)
 
 # Глобальні змінні для вибору гравців та рахунку
 player1_choice = None
@@ -40,6 +30,7 @@ player2_wins = 0
 current_mode = "default_mode"  # Поточний режим гри (можна змінити)
 CONFIG_FILE = "config.json"
 
+
 def send_command(command):
     """
     Відправляє команду на Arduino і отримує відповідь.
@@ -48,9 +39,11 @@ def send_command(command):
     Команда для відправлення (str).
     Відповідь Arduino.
     """
-    arduino.write((command + '\n').encode())  # Відправка команди
-    response = arduino.readline().decode().strip()  # Отримання відповіді
-    return response
+    if arduino is not None:
+        arduino.write((command + '\n').encode())  # Відправка команди
+        response = arduino.readline().decode().strip()  # Отримання відповіді
+        return response
+
 
 def send_command1(message):
     """
@@ -71,6 +64,7 @@ def send_command1(message):
     elif message == "get_saved_scores":
         return get_all_scores_from_file()  # Отримання всіх збережених результатів
     return "unknown_command"  # Команда не розпізнана
+
 
 def custom_messagebox(title, message, style_type):
     """
@@ -144,14 +138,18 @@ def custom_inputbox(title, message):
 
     return user_input  # Повертає введений текст
 
+
 def check_name_exists(name):
     """
     Перевіряє, чи існує ім'я в JSON файлі.
     Функція перевіряє, чи ім'я, передане як параметр,
     присутнє в JSON файлі конфігурації.
-    Якщо файл не існує, повертає False.
-    Ім'я, яке потрібно перевірити (str).
-    True, якщо ім'я існує, інакше False.
+
+    Параметри:
+    name (str): Ім'я, яке потрібно перевірити.
+
+    Повертає:
+    bool: True, якщо ім'я існує, інакше False.
     """
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, 'r') as file:
@@ -162,12 +160,14 @@ def check_name_exists(name):
 
 def save_score_to_file(name, player1_wins, player2_wins):
     """
-    Записує рахунок у JSON файл.
+    Записує рахунок гравців у JSON файл.
     Функція зберігає рахунок гравців у JSON файлі конфігурації.
     Якщо файл вже існує, то дані з нього завантажуються і оновлюються.
-    Ім'я гравця, чиї результати зберігаються (str).
-    player1_wins Кількість виграшів гравця 1 (int).
-    player2_wins Кількість виграшів гравця 2 (int).
+
+    Параметри:
+    name (str): Ім'я гравця, чиї результати зберігаються.
+    player1_wins (int): Кількість виграшів гравця 1.
+    player2_wins (int): Кількість виграшів гравця 2.
     """
     data = {}
 
@@ -179,6 +179,7 @@ def save_score_to_file(name, player1_wins, player2_wins):
             except json.JSONDecodeError:
                 pass  # Якщо файл порожній або пошкоджений
 
+    # Додаємо дані про результати за ім'ям
     data[name] = {
         "player1_wins": player1_wins,
         "player2_wins": player2_wins
@@ -187,25 +188,6 @@ def save_score_to_file(name, player1_wins, player2_wins):
     # Записуємо дані у файл із відступами для зручного читання
     with open(CONFIG_FILE, 'w') as file:
         json.dump(data, file, indent=4)
-
-def get_all_scores_from_file():
-    """
-    Зчитує всі рахунки з файлу, починаючи з третього рядка.
-    Функція перевіряє наявність файлу конфігурації.
-    Якщо файл існує, дані зчитуються з JSON,
-    і повертаються всі рахунки, пропускаючи непотрібні поля.
-    Словник з іменами гравців як ключами
-    та їх рахунками як значеннями. Повертає порожній словник у разі помилки.
-    """
-    if os.path.exists(CONFIG_FILE):
-        with open(CONFIG_FILE, 'r') as file:
-            try:
-                data = json.load(file)
-                # Ігноруємо COM порт і baud_rate, повертаємо тільки рахунки
-                return {k: v for k, v in data.items() if not isinstance(v, dict) or 'player1_wins' in v}
-            except json.JSONDecodeError:
-                return {}
-    return {}
 
 
 def save_score():
@@ -231,6 +213,27 @@ def save_score():
         else:
             custom_messagebox("Warning", "You must enter a name to save the score.", "warning")
             break
+
+def get_all_scores_from_file():
+    """
+    Зчитує всі рахунки з файлу, починаючи з третього рядка.
+    Функція перевіряє наявність файлу конфігурації.
+    Якщо файл існує, дані зчитуються з JSON,
+    і повертаються всі рахунки, пропускаючи непотрібні поля.
+    Словник з іменами гравців як ключами
+    та їх рахунками як значеннями. Повертає порожній словник у разі помилки.
+    """
+    if os.path.exists(CONFIG_FILE):
+        with open(CONFIG_FILE, 'r') as file:
+            try:
+                data = json.load(file)
+                # Ігноруємо COM порт і baud_rate, повертаємо тільки рахунки
+                return {k: v for k, v in data.items() if not isinstance(v, dict) or 'player1_wins' in v}
+            except json.JSONDecodeError:
+                return {}
+    return {}
+
+
 
 def load_score():
     """
@@ -329,13 +332,15 @@ def load_score():
                               activebackground="#528aa4")
     delete_button.pack(pady=10)
 
+
 def on_exit():
     """
     Закриває з'єднання з Arduino і виходить з програми.
     Функція закриває серійне з'єднання з Arduino
     та завершує роботу програми.
     """
-    arduino.close()  # Закриває серійне з'єднання
+    if arduino is not None:
+        arduino.close()  # Закриває серійне з'єднання
     root.quit()  # Завершує роботу програми
 
 
@@ -678,33 +683,59 @@ def resize_image(path, width, height):
     return ImageTk.PhotoImage(image.resize((width, height)))  # Змінюємо розмір і повертаємо PhotoImage
 
 
-# Створюємо основне вікно для гри
-root = tk.Tk()  # Ініціалізуємо Tkinter
-root.title("Rock-Paper-Scissors")  # Встановлюємо заголовок вікна
-root.geometry("500x600")  # Встановлюємо розміри вікна
-root.configure(bg="#282c34")  # Встановлюємо фон вікна
+if __name__ == "__main__":
+    # Створюємо основне вікно для гри
+    root = tk.Tk()  # Ініціалізуємо Tkinter
+    root.title("Rock-Paper-Scissors")  # Встановлюємо заголовок вікна
+    root.geometry("500x600")  # Встановлюємо розміри вікна
+    root.configure(bg="#282c34")  # Встановлюємо фон вікна
 
-# Створюємо меню для гри
-menu = Menu(root)  # Ініціалізуємо меню
-root.config(menu=menu)  # Призначаємо меню головному вікну
+    # Створюємо меню для гри
+    menu = Menu(root)  # Ініціалізуємо меню
+    root.config(menu=menu)  # Призначаємо меню головному вікну
 
-# Створюємо підменю "Game"
-game_menu = Menu(menu, tearoff=0)  # Ініціалізуємо підменю без роздільника
-menu.add_cascade(label="Game", menu=game_menu)  # Додаємо підменю до головного меню
+    # Створюємо підменю "Game"
+    game_menu = Menu(menu, tearoff=0)  # Ініціалізуємо підменю без роздільника
+    menu.add_cascade(label="Game", menu=game_menu)  # Додаємо підменю до головного меню
 
-# Додаємо команди до підменю
-game_menu.add_command(label="New", command=new_game)  # Команда для нової гри
-game_menu.add_command(label="Save", command=save_score)  # Команда для збереження результату
-game_menu.add_command(label="Load", command=load_score)  # Команда для завантаження результату
+    # Додаємо команди до підменю
+    game_menu.add_command(label="New", command=new_game)  # Команда для нової гри
+    game_menu.add_command(label="Save", command=save_score)  # Команда для збереження результату
+    game_menu.add_command(label="Load", command=load_score)  # Команда для завантаження результату
 
-# Показуємо початкову сторінку дій
-show_actions_page()  # Викликаємо функцію для відображення сторінки дій
+    # Показуємо початкову сторінку дій
+    show_actions_page()  # Викликаємо функцію для відображення сторінки дій
 
-# Обробка події закриття вікна
-root.protocol("WM_DELETE_WINDOW", on_exit)  # Визначаємо, що робити при закритті вікна
-root.mainloop()  # Запускаємо основний цикл обробки подій
+    # Обробка події закриття вікна
+    root.protocol("WM_DELETE_WINDOW", on_exit)  # Визначаємо, що робити при закритті вікна
+    root.mainloop()  # Запускаємо основний цикл обробки подій
 
+if __name__ != "__main__":
+    # Створюємо основне вікно для гри
+    root = tk.Tk()  # Ініціалізуємо Tkinter
+    root.title("Rock-Paper-Scissors")  # Встановлюємо заголовок вікна
+    root.geometry("500x600")  # Встановлюємо розміри вікна
+    root.configure(bg="#282c34")  # Встановлюємо фон вікна
 
+    # Створюємо меню для гри
+    menu = Menu(root)  # Ініціалізуємо меню
+    root.config(menu=menu)  # Призначаємо меню головному вікну
 
+    # Створюємо підменю "Game"
+    game_menu = Menu(menu, tearoff=0)  # Ініціалізуємо підменю без роздільника
+    menu.add_cascade(label="Game", menu=game_menu)  # Додаємо підменю до головного меню
 
+    # Додаємо команди до підменю
+    game_menu.add_command(label="New", command=new_game)  # Команда для нової гри
+    game_menu.add_command(label="Save", command=save_score)  # Команда для збереження результату
+    game_menu.add_command(label="Load", command=load_score)  # Команда для завантаження результату
 
+    # Показуємо початкову сторінку дій
+    show_actions_page()  # Викликаємо функцію для відображення сторінки дій
+
+    # Автоматичне закриття вікна через 1 мілісекунду після відкриття
+    root.after(1, root.destroy)
+
+    # Обробка події закриття вікна
+    root.protocol("WM_DELETE_WINDOW", on_exit)  # Визначаємо, що робити при закритті вікна
+    root.mainloop()  # Запускаємо основний цикл обробки подій

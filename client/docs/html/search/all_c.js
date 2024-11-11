@@ -1,21 +1,13 @@
 var searchData=
 [
-  ['teardown_0',['tearDown',['../classtest_1_1_test_show_results.html#a71dc75fae90eb7dbefdb3c494ff9bab3',1,'test::TestShowResults']]],
-  ['test_1',['test',['../namespacetest.html',1,'']]],
-  ['test_2epy_2',['test.py',['../test_8py.html',1,'']]],
-  ['test_5fcheck_5fname_5fexists_3',['test_check_name_exists',['../classtest_1_1_test_game_functions.html#a0824118ad24fadf6bf052b890952abc6',1,'test::TestGameFunctions']]],
-  ['test_5fcustom_5finputbox_5fcancel_4',['test_custom_inputbox_cancel',['../classtest_1_1_test_custom_inputbox.html#a98e7952a0fb22c1d639c2729b6374ad9',1,'test::TestCustomInputbox']]],
-  ['test_5fcustom_5finputbox_5fok_5',['test_custom_inputbox_ok',['../classtest_1_1_test_custom_inputbox.html#a6733b0ab6d48b61136914398ce88f7c0',1,'test::TestCustomInputbox']]],
-  ['test_5fget_5fall_5fscores_5ffrom_5ffile_6',['test_get_all_scores_from_file',['../classtest_1_1_test_game_functions.html#ae9e6445edf440c25ce25f404393ca98b',1,'test::TestGameFunctions']]],
-  ['test_5fload_5fconfig_7',['test_load_config',['../classtest_1_1_test_game_functions.html#a1f7e8ec505af9977e247cc601ab2363d',1,'test::TestGameFunctions']]],
-  ['test_5fload_5fscore_8',['test_load_score',['../classtest_1_1_test_game_functions_1_1_test_load_score.html#a69bea65243590c4bb887a4edb30067e6',1,'test::TestGameFunctions::TestLoadScore']]],
-  ['test_5fsave_5fscore_9',['test_save_score',['../classtest_1_1_test_game_functions.html#aba3ae7db8a888c7416f2de950c609e28',1,'test::TestGameFunctions']]],
-  ['test_5fsave_5fscore_5fto_5ffile_10',['test_save_score_to_file',['../classtest_1_1_test_game_functions.html#a980270ab2b0b6ecfd86559a213638c1e',1,'test.TestGameFunctions.test_save_score_to_file(self, mock_get_all_scores_from_file, mock_json_dump, mock_open)'],['../classtest_1_1_test_game_functions.html#a980270ab2b0b6ecfd86559a213638c1e',1,'test.TestGameFunctions.test_save_score_to_file(self, mock_get_all_scores_from_file, mock_json_dump, mock_open)']]],
-  ['test_5fsend_5fcommand_11',['test_send_command',['../classtest_1_1_test_game_functions.html#a7892f8d973b6992053e2b1fdc40a0360',1,'test.TestGameFunctions.test_send_command(self, mock_arduino)'],['../classtest_1_1_test_game_functions.html#acdfc866cdbf7c65d41d243b6896776f7',1,'test.TestGameFunctions.test_send_command(self, mock_send_command)']]],
-  ['test_5fsend_5fcommand1_12',['test_send_command1',['../classtest_1_1_test_game_functions.html#aafb60cf9920b6876c36d84a15cde7211',1,'test::TestGameFunctions']]],
-  ['test_5fshow_5fresults_13',['test_show_results',['../classtest_1_1_test_show_results.html#a4081c49f847dcfba7aae8fd81605b408',1,'test::TestShowResults']]],
-  ['testcustominputbox_14',['TestCustomInputbox',['../classtest_1_1_test_custom_inputbox.html',1,'test']]],
-  ['testgamefunctions_15',['TestGameFunctions',['../classtest_1_1_test_game_functions.html',1,'test']]],
-  ['testloadscore_16',['TestLoadScore',['../classtest_1_1_test_game_functions_1_1_test_load_score.html',1,'test::TestGameFunctions']]],
-  ['testshowresults_17',['TestShowResults',['../classtest_1_1_test_show_results.html',1,'test']]]
+  ['save_5fscore_0',['save_score',['../namespacemain.html#a0373a85723128d5f71fb1d0a1f287157',1,'main']]],
+  ['save_5fscore_5fto_5ffile_1',['save_score_to_file',['../namespacemain.html#aa2d537b6aba827d6d037be558401952f',1,'main']]],
+  ['send_5fcommand_2',['send_command',['../namespacemain.html#aa3b9d0552b00d00ddf0515c67b9b2e2c',1,'main']]],
+  ['send_5fcommand1_3',['send_command1',['../namespacemain.html#aa7c00d0cb7dc8119d9a9c40da52820fe',1,'main']]],
+  ['setup_4',['setUp',['../classtest_1_1_test_check_name_exists.html#a7b2da8c8383bef7f15f844640dd8617c',1,'test.TestCheckNameExists.setUp()'],['../classtest_1_1_test_clear_window.html#a73a7fd721c57c93a06a5d1a22b29c7f5',1,'test.TestClearWindow.setUp()'],['../classtest_1_1_test_custom_message_box.html#a45f2a3c9eede759838fb061e32b2efcf',1,'test.TestCustomMessageBox.setUp()'],['../classtest_1_1_test_custom_input_box.html#a94be9b3fe931bac0ee08f32971eb8636',1,'test.TestCustomInputBox.setUp()']]],
+  ['show_5factions_5fpage_5',['show_actions_page',['../namespacemain.html#ab14a8b4e5307459b7d5150ad3683cd45',1,'main']]],
+  ['show_5fmain_5fmenu_6',['show_main_menu',['../namespacemain.html#a25dd396997ad9c250e7129306829605d',1,'main']]],
+  ['show_5fplayer_5fchoice_5fpage_7',['show_player_choice_page',['../namespacemain.html#a2fa6e9f7afcfe31ecdefb80164f060fa',1,'main']]],
+  ['show_5fresults_8',['show_results',['../namespacemain.html#ae18d310560222a75c9460bc6f3b8dd83',1,'main']]],
+  ['start_5fgame_9',['start_game',['../namespacemain.html#ade6eea865f3f667284010ce291d0449d',1,'main']]]
 ];

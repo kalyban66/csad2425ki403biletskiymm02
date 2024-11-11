@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['reset_5fscores_0',['reset_scores',['../namespacemain.html#aa8af6efcc33a40469924d5a4b05436a5',1,'main']]],
-  ['resize_5fimage_1',['resize_image',['../namespacemain.html#a10c0aed9869175e385d3b14bde054459',1,'main']]],
-  ['root_2',['root',['../namespacemain.html#aa698d1260ba54f169d55a5630f0f0aa3',1,'main']]]
+  ['play_5fagain_0',['play_again',['../namespacemain.html#a5c5cb7e252ff19895479180d5ad7d02f',1,'main']]],
+  ['player1_5fchoice_1',['player1_choice',['../namespacemain.html#adc4bc71042d7b8ac12d4b803f79dfafe',1,'main']]],
+  ['player1_5fhistory_2',['player1_history',['../namespacemain.html#aed2dfe3aad3dbe42b336c08b2224ceb8',1,'main']]],
+  ['player1_5fwins_3',['player1_wins',['../namespacemain.html#a874a6cfa8448185aa45192a955d83080',1,'main']]],
+  ['player2_5fchoice_4',['player2_choice',['../namespacemain.html#a4b3a2b33a94e20f29f900b068b68d90f',1,'main']]],
+  ['player2_5fwins_5',['player2_wins',['../namespacemain.html#a59548109bd23265d25434b6aa28af7b5',1,'main']]],
+  ['player_5fmove_6',['player_move',['../namespacemain.html#a7a291e8e3ab55953e18ccd40701be5a8',1,'main']]]
 ];

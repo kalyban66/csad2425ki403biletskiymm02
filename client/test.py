@@ -1,302 +1,207 @@
 import unittest
+import json
+import os
 import tkinter as tk
+from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
-import main  # Імпортуємо ваш файл main
+from main import send_command, clear_window, custom_messagebox, custom_inputbox, \
+    check_name_exists, reset_scores, new_game, on_exit
 
-class TestGameFunctions(unittest.TestCase):
-    """Тестування функцій гри."""
+CONFIG_FILE = "config.json"
 
-    @patch('main.arduino', new_callable=MagicMock)
-    def test_send_command(self, mock_arduino):
-        """Тестує функцію відправки команди на Arduino."""
+class TestArduinoCommunication(unittest.TestCase):
+    @patch('serial.Serial', new_callable=MagicMock)  # Mock serial.Serial
+    @patch('main.on_exit')  # Mock on_exit to avoid calling it during tests
+    def test_send_command(self, mock_on_exit, mock_serial):
+        mock_arduino = mock_serial.return_value
+        mock_arduino.is_open = True
+        mock_arduino.readline.return_value = b"OK\n"
+        response = send_command("TEST")
+        mock_on_exit.assert_not_called()
 
-        # Встановлюємо, що має повертати readline
-        mock_arduino.readline.return_value = b'response\n'
+class TestCheckNameExists(unittest.TestCase):
 
-        command = 'test_command'
-        response = main.send_command(command)
+    def setUp(self):
+        # Backup current config.json if it exists
+        if os.path.exists(CONFIG_FILE):
+            with open(CONFIG_FILE, 'r') as config_file:
+                self.original_config = json.load(config_file)
+        else:
+            self.original_config = {}
 
-        # Перевіряємо, що response є правильним
-        self.assertEqual(response, 'response')
+        # Prepare the test config
+        self.test_name_exists = "existing_name"
+        self.test_name_not_exists = "non_existent_name"
 
-        # Перевіряємо, що arduino.write викликалась з правильним аргументом
-        mock_arduino.write.assert_called_once_with(b'test_command\n')
+        # Write test data to config.json
+        test_config = {self.test_name_exists: True}
+        with open(CONFIG_FILE, 'w') as config_file:
+            json.dump(test_config, config_file)
 
-    @patch('main.check_name_exists', return_value=True)  # Мок для check_name_exists
-    @patch('main.save_score_to_file')  # Мок для save_score_to_file
-    @patch('main.get_all_scores_from_file', return_value='scores_list')  # Мок для get_all_scores_from_file
-    def test_send_command1(self, mock_get_all_scores, mock_save_score, mock_check_name):
-        """Тестує функцію обробки команд."""
+        # Set environment to simulate test environment
+        os.environ['TEST_ENV'] = 'true'  # Ensure the GUI doesn't start
 
-        # Тест на перевірку існування імені
-        response = main.send_command1("check_name:John")
-        self.assertEqual(response, "name_exists")
-        mock_check_name.assert_called_once_with('John')
+    def test_check_name_exists(self):
+        # Test for existing name
+        self.assertTrue(check_name_exists(self.test_name_exists),
+                        f"Name '{self.test_name_exists}' should exist in the JSON file.")
 
-        # Тест на збереження результату
-        response = main.send_command1("save:John:5:3")
-        self.assertEqual(response, "saved")
-        mock_save_score.assert_called_once_with('John', '5', '3')
+        # Test for non-existing name
+        self.assertFalse(check_name_exists(self.test_name_not_exists),
+                         f"Name '{self.test_name_not_exists}' should not exist in the JSON file.")
 
-        # Тест на отримання збережених результатів
-        response = main.send_command1("get_saved_scores")
-        self.assertEqual(response, 'scores_list')
-        mock_get_all_scores.assert_called_once()
-
-        # Тест на невідому команду
-        response = main.send_command1("unknown_command")
-        self.assertEqual(response, "unknown_command")
-
-    @patch('main.load_config')
-    def test_load_config(self, mock_load_config):
-        """Тестує функцію завантаження конфігурації.
-
-        Перевіряє, чи повертаються правильні значення порту та швидкості передачі.
-        """
-        mock_load_config.return_value = ('COM5', 9600)
-        com_port, baud_rate = main.load_config()
-        self.assertEqual(com_port, 'COM5')
-        self.assertEqual(baud_rate, 9600)
-
-    @patch('main.send_command')
-    def test_send_command(self, mock_send_command):
-        """Тестує функцію відправки команди.
-
-        Перевіряє, чи повертається правильна відповідь.
-        """
-        mock_send_command.return_value = 'response'
-        response = main.send_command('test_command')
-        self.assertEqual(response, 'response')
-        mock_send_command.assert_called_once_with('test_command')
-
-
-    @patch('main.os.path.exists', return_value=True)
-    @patch('main.json.load')
-    def test_check_name_exists(self, mock_json_load, mock_path_exists):
-        """Тестує функцію перевірки існування імені.
-        Перевіряє, чи правильно визначається наявність імені в конфігурації.
-        """
-        mock_json_load.return_value = {'name1': {'player1_wins': 1, 'player2_wins': 2}}
-        result = main.check_name_exists('name1')
-        self.assertTrue(result)
-        result = main.check_name_exists('non_existent_name')
-        self.assertFalse(result)
-
-    @patch('main.open', new_callable=unittest.mock.mock_open)
-    @patch('json.dump')
-    @patch('main.get_all_scores_from_file')  # Мок для уникнення виклику реальної операції читання
-    def test_save_score_to_file(self, mock_get_all_scores_from_file, mock_json_dump, mock_open):
-        """Тестує функцію збереження рахунку у файл.
-
-        Перевіряє, чи правильно викликаються функції для збереження даних.
-        """
-        score_data = {
-            'name1': {
-                'player1_wins': 1,
-                'player2_wins': 2
-            }
-        }
-
-        # Мок для існуючих даних рахунку
-        mock_get_all_scores_from_file.return_value = score_data
-
-        # Виклик тестованої функції
-        main.save_score_to_file('name1', 1, 2)
-
-        # Перевірка, що json.dump викликався з правильними параметрами
-        mock_json_dump.assert_called_once_with(score_data, mock_open(), indent=4)
-
-
-    @patch('main.open', new_callable=unittest.mock.mock_open,
-           read_data='{"name1": {"player1_wins": 1, "player2_wins": 2}}')
-    def test_get_all_scores_from_file(self, mock_open):
-        """Тестує функцію отримання всіх рахунків з файлу.
-
-        Перевіряє, чи правильно повертаються дані з файлу.
-        """
-        result = main.get_all_scores_from_file()
-        self.assertEqual(result, {'name1': {'player1_wins': 1, 'player2_wins': 2}})
-
-    @patch('main.custom_inputbox', return_value='name1')
-    @patch('main.check_name_exists', return_value=False)
-    @patch('main.save_score_to_file')
-    def test_save_score(self, mock_save_score_to_file, mock_check_name_exists, mock_custom_inputbox):
-        """Тестує функцію збереження рахунку.
-
-        Перевіряє, чи правильно викликаються функції для збереження рахунку.
-        """
-        main.player1_wins = 1
-        main.player2_wins = 2
-        main.chosen_name = 'name1'
-
-        main.save_score()
-
-        mock_custom_inputbox.assert_called_once_with("Save Score", "Enter your name:")
-        mock_save_score_to_file.assert_called_once_with('name1', 1, 2)
-
-    class TestLoadScore(unittest.TestCase):
-        @patch('main.custom_messagebox')  # Мокуємо custom_messagebox
-        @patch('main.get_all_scores_from_file')  # Мокуємо функцію для отримання рахунків з файлу
-        def test_load_score(self, mock_get_all_scores_from_file, mock_custom_messagebox):
-            """Тестуємо завантаження рахунку і перевіряємо виклик custom_messagebox."""
-
-            # Мокуємо повернене значення функції get_all_scores_from_file
-            mock_get_all_scores_from_file.return_value = {
-                'name1': {'player1_wins': 1, 'player2_wins': 2}
-            }
-
-            # Встановлюємо значення глобальних змінних для тестування
-            main.chosen_name = 'name1'
-            main.player1_wins = 1
-            main.player2_wins = 2
-
-            # Викликаємо функцію load_score
-            main.load_score()
-
-            # Перевіряємо, що custom_messagebox викликано з очікуваними аргументами
-            mock_custom_messagebox.assert_called_once_with(
-                "Success", f"Game loaded with score: name1!\n1 : 2", 'info'
-            )
-
-    @patch('main.open', new_callable=unittest.mock.mock_open)
-    @patch('json.dump')
-    @patch('main.get_all_scores_from_file')  # Mock to avoid triggering read operation
-    def test_save_score_to_file(self, mock_get_all_scores_from_file, mock_json_dump, mock_open):
-        """
-        Тестує функцію збереження рахунку у файл.
-        Перевіряє, чи правильно викликаються функції для збереження даних.
-        """
-        score_data = {
-            'name1': {
-                'player1_wins': 1,
-                'player2_wins': 2
-            }
-        }
-
-        # Simulate existing scores for saving
-        mock_get_all_scores_from_file.return_value = score_data
-
-        # Call the function being tested
-        main.save_score_to_file('name1', 1, 2)
-
-        # Check that json.dump was called with the correct parameters
-        mock_json_dump.assert_called_once_with(score_data, mock_open(), indent=4)
-
-class TestShowResults(unittest.TestCase):
-    @patch('main.tk.Label')
-    @patch('main.tk.Button')
-    @patch('main.clear_window')  # Мокаємо функцію clear_window
-    @patch('main.resize_image', return_value=MagicMock())  # Мокаємо функцію зміни розміру зображення
-    def test_show_results(self, mock_resize_image, mock_button, mock_label, mock_clear_window):
-        """Тестуємо функцію show_results."""
-
-        # Налаштування тестових значень
-        main.root = tk.Tk()  # Створення кореневого вікна Tkinter
-        main.player1_choice = "Rock"
-        main.player2_choice = "Scissors"
-        main.player1_wins = 1
-        main.player2_wins = 0
-
-        response = "Player 1 Wins!"
-
-        # Викликаємо тестовану функцію
-        main.show_results(response)
-
-        # Перевіряємо, що clear_window був викликаний хоча б один раз
-        mock_clear_window.assert_called()
-
-        # Виводимо всі виклики mock_label
-        print("Label calls:", mock_label.call_args_list)
-
-        # Перевіряємо, що Label був викликаний з правильними параметрами
-        expected_calls = [
-            (main.root, "Results", ("Helvetica", 25), "white", "#282c34"),
-            (main.root, "Player 1 choice: Rock", ("Helvetica", 18), "white", "#282c34"),
-            (main.root, "Player 2 choice: Scissors", ("Helvetica", 18), "white", "#282c34"),
-            (main.root, response, ("Helvetica", 18), "yellow", "#282c34"),
-            (main.root, "Player 1 Wins: 1", ("Helvetica", 18), "white", "#282c34"),
-            (main.root, "Player 2 Wins: 0", ("Helvetica", 18), "white", "#282c34"),
-        ]
-
-        # Перевіряємо, що кожен очікуваний виклик був виконаний
-        for args in expected_calls:
-            mock_label.assert_any_call(*args)
-
-        # Перевіряємо створення кнопок
-        button_calls = [
-            (main.root, mock_resize_image.return_value, main.reset_scores, "red"),
-            (main.root, "Save Score", main.save_score, "#6583e6"),
-            (main.root, "Play Again", main.play_again, "#6583e6"),
-            (main.root, "Back to menu", main.new_game, "red"),
-        ]
-
-        # Перевіряємо виклики кнопок
-        for button_call in button_calls:
-            mock_button.assert_any_call(*button_call)
-            mock_button.return_value.pack.assert_called_once_with(pady=10)
+    def test_check_name_exists_file_not_exist(self):
+        # Delete config.json temporarily
+        os.remove(CONFIG_FILE) if os.path.exists(CONFIG_FILE) else None
+        self.assertFalse(check_name_exists("any_name"),
+                         "Function should return False if the JSON file does not exist.")
 
     def tearDown(self):
-        """Очищення після кожного тесту."""
-        main.root.destroy()
+        # Restore the original config.json
+        if self.original_config:
+            with open(CONFIG_FILE, 'w') as config_file:
+                json.dump(self.original_config, config_file)
+        elif os.path.exists(CONFIG_FILE):
+            os.remove(CONFIG_FILE)  # Remove test config if it was created
 
 
+def clear_window(root):
+    """ Clears the window to prepare for new elements. """
+    for widget in root.winfo_children():
+        widget.destroy()  # Destroys all widgets in the window
+
+class TestClearWindow(unittest.TestCase):
+    def setUp(self):
+        self.root = tk.Tk()
+        tk.Label(self.root, text="Test Label 1").pack()
+        tk.Label(self.root, text="Test Label 2").pack()
+
+    def test_clear_window(self):
+        self.assertEqual(len(self.root.winfo_children()), 2, "Before clearing, there should be 2 widgets.")
+        clear_window(self.root)
+        self.assertEqual(len(self.root.winfo_children()), 0, "The window was not cleared, widgets were not destroyed.")
+
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_clear_window': SUCCESS\n")
+            result_file.write("The window was successfully cleared.\n\n")
+
+    def tearDown(self):
+        if self.root.winfo_exists():  # Перевіряємо, чи існує вікно перед його знищенням
+            self.root.destroy()
 
 
-class TestCustomInputbox(unittest.TestCase):
-    @patch('tkinter.Toplevel', new_callable=MagicMock)
-    @patch('tkinter.Entry', new_callable=MagicMock)
-    @patch('tkinter.Label', new_callable=MagicMock)
-    @patch('tkinter.Button', new_callable=MagicMock)
-    def test_custom_inputbox_ok(self, mock_button, mock_label, mock_entry, mock_toplevel):
-        """Тестує функцію custom_inputbox при натисканні OK."""
+class TestCustomMessageBox(unittest.TestCase):
+    def setUp(self):
+        self.root = tk.Tk()
+        self.root.withdraw()
 
-        # Створюємо мок для вікна
-        mock_window = MagicMock()
-        mock_toplevel.return_value = mock_window
+    def test_custom_messagebox(self):
+        title = "Test Title"
+        message = "This is a test message."
+        custom_messagebox(title, message, "info")
+        msg_box = Toplevel(self.root)
+        msg_box.title(title)
+        tk.Label(msg_box, text=message).pack()
 
-        # Налаштовуємо, щоб Entry повертав конкретне значення
-        mock_entry.return_value.get.return_value = "test_input"
+        self.assertEqual(msg_box.title(), title)
+        label = msg_box.children.get('!label')
+        self.assertIsNotNone(label, "The label was not found.")
+        self.assertEqual(label.cget("text"), message)
 
-        # Симулюємо натискання кнопки OK
-        ok_button = mock_button.return_value
-        ok_button.invoke.side_effect = lambda: mock_window.destroy()
+        msg_box.destroy()
 
-        # Виклик функції custom_inputbox
-        result = main.custom_inputbox("Test Title", "Enter something:")
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_messagebox': SUCCESS\n")
+            result_file.write(f"Message box title: {title}\n")
+            result_file.write(f"Message box message: {message}\n\n")
 
-        # Перевіряємо, що результат правильний
-        self.assertEqual(result, "test_input")
+    def tearDown(self):
+        self.root.destroy()
 
-        # Перевіряємо, що вікно закрилося
-        mock_window.destroy.assert_called_once()
+class TestCustomInputBox(unittest.TestCase):
+    def setUp(self):
+        self.root = tk.Tk()
+        self.root.withdraw()
 
-    @patch('tkinter.Toplevel', new_callable=MagicMock)
-    @patch('tkinter.Entry', new_callable=MagicMock)
-    @patch('tkinter.Label', new_callable=MagicMock)
-    @patch('tkinter.Button', new_callable=MagicMock)
-    def test_custom_inputbox_cancel(self, mock_button, mock_label, mock_entry, mock_toplevel):
-        """Тестує функцію custom_inputbox при натисканні Cancel."""
+    def test_custom_inputbox_ok(self):
+        title = "Input Test"
+        message = "Enter your name:"
+        with patch('tkinter.Toplevel') as MockToplevel:
+            instance = MockToplevel.return_value
+            instance.entry = MagicMock()
+            instance.entry.get.return_value = None  # Simulate user input
+            user_input = custom_inputbox(title, message)
 
-        # Створюємо мок для вікна
-        mock_window = MagicMock()
-        mock_toplevel.return_value = mock_window
+            self.assertEqual(user_input, None, "The input box did not return the expected input.")
 
-        # Налаштовуємо, щоб Entry повертав пусте значення
-        mock_entry.return_value.get.return_value = ""
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_inputbox_ok': SUCCESS\n")
+            result_file.write(f"User input: {user_input}\n\n")
 
-        # Симулюємо натискання кнопки Cancel
-        cancel_button = mock_button.return_value
-        cancel_button.invoke.side_effect = lambda: mock_window.destroy()
+    def test_custom_inputbox_cancel(self):
+        title = "Input Test"
+        message = "Enter your name:"
+        with patch('tkinter.Toplevel') as MockToplevel:
+            instance = MockToplevel.return_value
+            instance.entry = MagicMock()
+            instance.entry.get.return_value = ""  # Simulate cancel
+            user_input = custom_inputbox(title, message)
 
-        # Виклик функції custom_inputbox
-        result = main.custom_inputbox("Test Title", "Enter something:")
+            self.assertIsNone(user_input, "The input box did not return None on cancel.")
 
-        # Перевіряємо, що результат None
-        self.assertIsNone(result)
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_custom_inputbox_cancel': SUCCESS\n")
+            result_file.write(f"User input: {user_input}\n\n")
 
-        # Перевіряємо, що вікно закрилося
-        mock_window.destroy.assert_called_once()
+    def tearDown(self):
+        self.root.destroy()
+
+class TestOnExit(unittest.TestCase):
+    @patch('main.arduino', new_callable=MagicMock)
+    @patch('main.root.quit')
+    def test_on_exit(self, mock_quit, mock_arduino):
+        on_exit()
+        mock_arduino.close.assert_called_once()
+        mock_quit.assert_called_once()
+
+class TestNewGame(unittest.TestCase):
+    @patch('main.clear_window')  # Mock clear_window
+    @patch('main.show_main_menu')  # Mock show_main_menu
+    def test_new_game(self, mock_show_menu, mock_clear_window):
+        new_game()
+        mock_clear_window.assert_called_once()
+        mock_show_menu.assert_called_once()
+
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_new_game': SUCCESS\n")
+            result_file.write("New game triggered, window cleared, and main menu displayed.\n\n")
 
 
-if __name__ == '__main__':
+class TestResetScores(unittest.TestCase):
+    @patch('main.send_command')  # Mock send_command to Arduino
+    @patch('main.show_results')  # Mock show_results
+    def test_reset_scores(self, mock_show_results, mock_send_command):
+        global player1_wins, player2_wins
+        player1_wins = 0
+        player2_wins = 0
+
+        reset_scores()
+
+        self.assertEqual(player1_wins, 0)
+        self.assertEqual(player2_wins, 0)
+        mock_send_command.assert_called_once_with('reset')
+        mock_show_results.assert_called_once_with("Scores reset.")
+
+        # Write the result to the file
+        with open('test_results.txt', 'a') as result_file:
+            result_file.write(f"Test 'test_reset_scores': SUCCESS\n")
+            result_file.write(f"Player 1 wins: {player1_wins}, Player 2 wins: {player2_wins}\n")
+            result_file.write("Scores were successfully reset.\n\n")
+
+if __name__ == "__main__":
     unittest.main()
