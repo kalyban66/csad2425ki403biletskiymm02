@@ -1,0 +1,4 @@
+Total tests run: 10
+Passed tests: 10
+Failed tests: 0
+Code coverage: 37.65%

@@ -6,6 +6,7 @@ from tkinter import Toplevel
 from unittest.mock import patch, MagicMock
 from main import send_command, clear_window, custom_messagebox, custom_inputbox, \
     check_name_exists, reset_scores, new_game, on_exit
+from coverage import Coverage
 
 CONFIG_FILE = "config.json"
 
@@ -202,6 +203,7 @@ class TestResetScores(unittest.TestCase):
             result_file.write(f"Test 'test_reset_scores': SUCCESS\n")
             result_file.write(f"Player 1 wins: {player1_wins}, Player 2 wins: {player2_wins}\n")
             result_file.write("Scores were successfully reset.\n\n")
+
 
 if __name__ == "__main__":
     unittest.main()
