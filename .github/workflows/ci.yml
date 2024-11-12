@@ -8,8 +8,8 @@ on:
 
 jobs:
   run-tests:
-    name: Run run_tests.py
-    runs-on: ubuntu-latest  # Runs on the latest Ubuntu
+    name: Run All Tests
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -18,68 +18,35 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'  # Specify Python version
+          python-version: '3.8'
 
-      # Install dependencies including Xvfb
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb  # Install Xvfb for virtual display
+          sudo apt-get install -y xvfb
           python -m pip install --upgrade pip
           pip install pyserial pillow
 
-      # Run run_tests.py and save results to test_summary.txt
       - name: Run run_tests.py
         working-directory: client
         run: |
-          ls client
           export PYTHONPATH=$PYTHONPATH:$(pwd)/client
           xvfb-run -a python run_tests.py | tee test_summary.txt
 
-      # Upload test summary as artifact
-      - name: Upload Test Summary
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-summary
-          path: test_summary.txt  # Specify the test summary file
-
-  run-unittests:
-    name: Run test.py
-    runs-on: ubuntu-latest  # Runs on the latest Ubuntu
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'  # Specify Python version
-
-      # Install dependencies including Xvfb
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb  # Install Xvfb for virtual display
-          python -m pip install --upgrade pip
-          pip install pyserial pillow
-
-      # Run test.py in virtual display using Xvfb
-      - name: Run tests
+      - name: Run test.py
         working-directory: client
         run: |
-          ls client
           export PYTHONPATH=$PYTHONPATH:$(pwd)/client
           xvfb-run -a python -m unittest test.py | tee test_results.txt
 
-      # Upload test results as artifacts
-      - name: Upload Test Results
+      - name: Upload Test Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: test-results
-          path: test_results.txt  # Specify the test results file
+          name: test-artifacts
+          path: |
+            client/test_summary.txt
+            client/test_results.txt
 
-  # Additional job for Arduino project
   arduino:
     name: Build Arduino Uno(server)
     runs-on: ubuntu-latest
@@ -88,22 +55,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Arduino CLI for compilation
       - name: Set up Arduino CLI
         uses: arduino/setup-arduino-cli@v1
         with:
           version: '0.19.2'
 
-      # Install Arduino AVR platform
       - name: Install Arduino AVR platform
         run: arduino-cli core install arduino:avr
 
-      # Compile the Arduino project
       - name: Build Arduino Project
-        run: |
-          arduino-cli compile --fqbn arduino:avr:uno server/server.ino
+        run: arduino-cli compile --fqbn arduino:avr:uno server/server.ino
 
-      # Upload the Arduino build result as an artifact
       - name: Upload Arduino Build Artifact
         uses: actions/upload-artifact@v3
         with:
