@@ -7,8 +7,8 @@ on:
       - '*'
 
 jobs:
-  build:
-    name: Build Python(client)
+  run-tests:
+    name: Run run_tests.py
     runs-on: ubuntu-latest  # Runs on the latest Ubuntu
 
     steps:
@@ -28,7 +28,42 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyserial pillow
 
-      # Run tests in virtual display using Xvfb
+      # Run run_tests.py and save results to test_summary.txt
+      - name: Run run_tests.py
+        working-directory: client
+        run: |
+          export PYTHONPATH=$PYTHONPATH:$(pwd)/client
+          xvfb-run -a python run_tests.py > test_summary.txt
+
+      # Upload test summary as artifact
+      - name: Upload Test Summary
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-summary
+          path: client/test_summary.txt  # Specify the test summary file
+
+  run-unittests:
+    name: Run test.py
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Specify Python version
+
+      # Install dependencies including Xvfb
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb  # Install Xvfb for virtual display
+          python -m pip install --upgrade pip
+          pip install pyserial pillow
+
+      # Run test.py in virtual display using Xvfb
       - name: Run tests
         working-directory: client
         run: |
@@ -40,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: test_results.txt  # Specify the test results file
+          path: client/test_results.txt  # Specify the test results file
 
   # Additional job for Arduino project
   arduino:
