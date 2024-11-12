@@ -1,6 +1,6 @@
 import unittest
 import os
-from coverage import Coverage  # Упевніться, що модуль coverage встановлено
+from coverage import Coverage
 
 class TestReportGenerator:
     @staticmethod
@@ -17,7 +17,7 @@ class TestReportGenerator:
 
 def run_tests_with_report():
     # Ініціюємо покриття і вказуємо файл, для якого рахується покриття
-    cov = Coverage(source=["main"])
+    cov = Coverage(source=["main", "test"])
     cov.start()
 
     # Завантажуємо і запускаємо тести з файлу test.py

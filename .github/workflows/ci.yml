@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-summary
-          path: test_summary.txt  # Specify the test summary file
+          path: client/test_summary.txt  # Specify the test summary file
 
   run-unittests:
     name: Run test.py
@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: test_results.txt  # Specify the test results file
+          path: client/test_results.txt  # Specify the test results file
 
   # Additional job for Arduino project
   arduino:

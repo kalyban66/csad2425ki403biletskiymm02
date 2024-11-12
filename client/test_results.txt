@@ -38,3 +38,43 @@ Test 'test_reset_scores': SUCCESS
 Player 1 wins: 0, Player 2 wins: 0
 Scores were successfully reset.
 
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
+Test 'test_clear_window': SUCCESS
+The window was successfully cleared.
+
+Test 'test_custom_inputbox_cancel': SUCCESS
+User input: None
+
+Test 'test_custom_inputbox_ok': SUCCESS
+User input: None
+
+Test 'test_custom_messagebox': SUCCESS
+Message box title: Test Title
+Message box message: This is a test message.
+
+Test 'test_new_game': SUCCESS
+New game triggered, window cleared, and main menu displayed.
+
+Test 'test_reset_scores': SUCCESS
+Player 1 wins: 0, Player 2 wins: 0
+Scores were successfully reset.
+
