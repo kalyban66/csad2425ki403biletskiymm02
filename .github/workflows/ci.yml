@@ -32,8 +32,9 @@ jobs:
       - name: Run run_tests.py
         working-directory: client
         run: |
+          ls client
           export PYTHONPATH=$PYTHONPATH:$(pwd)/client
-          xvfb-run -a python run_tests.py > test_summary.txt
+          xvfb-run -a python run_tests.py | tee test_summary.txt
 
       # Upload test summary as artifact
       - name: Upload Test Summary
@@ -67,8 +68,9 @@ jobs:
       - name: Run tests
         working-directory: client
         run: |
+          ls client
           export PYTHONPATH=$PYTHONPATH:$(pwd)/client
-          xvfb-run -a python -m unittest test.py > test_results.txt
+          xvfb-run -a python -m unittest test.py | tee test_results.txt
 
       # Upload test results as artifacts
       - name: Upload Test Results
